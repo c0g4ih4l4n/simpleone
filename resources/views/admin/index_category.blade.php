@@ -11,6 +11,7 @@
                     <tr>
                         <th>Category ID</th>
                         <th>Category Name</th>
+                        <th>Order Number</th>
                         <th>Number of Product</th>
                         @if (!empty($user) && $user['user_level'] >0)
                         <th>Edit </th>
@@ -26,6 +27,7 @@
                     <tr>
                         <td>{!! $num !!}</td>
                         <td><a href="{!! URL::route('categories.show', $category['id']) !!}">{!! $category['category_name'] !!}</a></td>
+                        <td>{!! $category['order_number'] !!}</td>
                         <td>{!! $category['number_of_products'] !!}</td>
                         @if (!empty($user) && $user['user_level'] >0)
                         <td><a href="{!! URL::route('admin.categories.edit', $category['id']) !!}">Edit </a></td>

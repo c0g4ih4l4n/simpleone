@@ -41,10 +41,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $sort_categories = $this->categories->toArray();
+        usort($sort_categories, array ($this, 'compareInteger'));
         $data = array (
             'user' => $this->user,
             'categories' => $this->categories,
+            'sort_categories' => $sort_categories
             );
         return view('interface.home')->with($data);
+    }
+
+    function compareInteger($a, $b) {
+        if ($a['order_number'] == $b['order_number']) 
+            return 0;
+        return ($a['order_number'] < $b['order_number']) ? -1 : 1;
     }
 }

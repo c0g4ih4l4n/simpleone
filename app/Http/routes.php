@@ -37,7 +37,6 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::resource('users', 'UserController', ['only' => ['show', 'index', 'edit', 'update']]);
 
-
 	Route::group(['prefix' => 'products/{id}', 'as' => 'products::'], function () {
 		Route::get('/', 'ProductController@show');
 

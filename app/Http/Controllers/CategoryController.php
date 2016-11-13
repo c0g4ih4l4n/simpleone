@@ -63,6 +63,7 @@ class CategoryController extends Controller
         $category = new Category;
         $category['category_name'] = $request['category_name'];
         $category['category_description'] = $request['category_description'];
+        $category->order_number = 1;
         $category['number_of_products'] = 0;
         $category->save();
         $message = "Success";
