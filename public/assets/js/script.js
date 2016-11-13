@@ -1,8 +1,4 @@
 
-function test() {
-	alert('Yes');
-}
-
 function postComment(id){
 	$.ajax({
 		type:'POST',
@@ -13,3 +9,10 @@ function postComment(id){
 		}
 	});
 }
+
+// jquery change click category
+$(document).ready(function () {
+	$('.category-search').click(function () {
+		$('#category-dropdown').text($(this).text());
+	})
+});
