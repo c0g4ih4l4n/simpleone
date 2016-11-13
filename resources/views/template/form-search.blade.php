@@ -3,7 +3,7 @@
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="category-dropdown">All Category <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
         @foreach ($sort_categories as $category)
-            <li class="category-search"><a>{!! $category['category_name'] !!}</a></li>
+            <li class="category-search"><a href="#">{!! $category['category_name'] !!}</a></li>
         @endforeach
         </ul>
     </div>
