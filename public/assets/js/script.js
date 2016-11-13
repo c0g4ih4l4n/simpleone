@@ -13,6 +13,6 @@ function postComment(id){
 // jquery change click category
 $(document).ready(function () {
 	$('.category-search').click(function () {
-		$('#category-dropdown').text($(this).text());
+		$('#category-dropdown').html($(this).text() + " <span class='caret'></span>");
 	})
 });
