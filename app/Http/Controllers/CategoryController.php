@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
+use App\Repositories\Eloquent\CategoryRepository;
+
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
@@ -26,8 +28,11 @@ class CategoryController extends Controller
 
     private $user;
 
+    protected $categoryRepository;
+
     public function __construct() {
         $this->user = Auth::user();
+        $this->categoryRepository = new CategoryRepository(new Category);
     }
 
     /**
@@ -37,7 +42,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all()->toArray();
+        $categories = $this->categoryRepository->listAll()->toArray();
 
         $data = array (
             'user' => $this->user,
@@ -66,13 +71,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $category = new Category;
-        $category['category_name'] = $request['category_name'];
-        $category['category_description'] = $request['category_description'];
-        $category->order_number = 1;
-        $category['number_of_products'] = 0;
-        $category->save();
-        $message = "Success";
+
+        $message = $this->categoryRepository->createNew($request);
 
         return Redirect::route('admin.categories.create')->with('message', $message);
     }
@@ -85,7 +85,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $category = $this->categoryRepository->findById($id);
         $popular_products = Product::where('category_id', '=', $id)->get();
 
         $data = array (
@@ -105,7 +105,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = $this->categoryRepository->findById($id);
+
         $data = array (
             'user' => $this->user,
             'category' => $category
@@ -123,13 +124,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
 
-        $category->category_name = $request->category_name;
-        $category->category_description = $request->category_description;
-        $category->save();
+        $message = $this->categoryRepository->update($request, $id);
 
-        $message = "Success";
         $data = array (
             'message' => $message,
             'user' => $this->user,
@@ -146,12 +143,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::destroy($id);
-        $message = "Success";
+        $message = $this->categoryRepository->delete($id);
+
         $data = array (
             'message' => $message,
             'user' => $this->user,
             );
+        
         return Redirect::route('categories.index')->with($data);
     }
 }

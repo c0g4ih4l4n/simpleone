@@ -17,7 +17,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-	Route::get('/search/{$search}', ['as' => 'search', 'uses' => 'SearchController@search']);
+	// Route::get('/search/{$search}', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 	Route::get('/profile', [
 		'as' => 'profile', 
