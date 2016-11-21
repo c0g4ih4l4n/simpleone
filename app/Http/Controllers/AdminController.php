@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-use App\Category;
-use App\Product;
-use App\Supplier;
-use App\ProductItem;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\ProductItem;
+use App\Models\Comment;
+use App\User;
+use App\Models\Review;
+use App\Models\Vote;
 
 class AdminController extends Controller
 {

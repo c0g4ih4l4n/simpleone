@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
 
-use App\Category;
-use App\Product;
-use App\Supplier;
-use App\ProductItem;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\ProductItem;
+use App\Models\Comment;
 use App\User;
-use App\Comment;
+use App\Models\Review;
+use App\Models\Vote;
 
 class UserController extends Controller
 {
