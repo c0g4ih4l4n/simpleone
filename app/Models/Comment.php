@@ -24,6 +24,6 @@ class Comment extends Model
     }
 
     public function votes() {
-        return $this->morphMany('App\Vote', 'voteable');
+        return $this->morphMany('App\Models\Vote', 'voteable');
     }
 }

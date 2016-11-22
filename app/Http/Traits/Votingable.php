@@ -2,7 +2,7 @@
 
 namespace App\Http\Traits;
 
-use App\Vote;
+use App\Models\Vote;
 use App\Http\Requests\VoteRequest;
 
 trait Votingable {

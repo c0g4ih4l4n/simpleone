@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Repositories\Eloquent\CommentRepository;
+
 use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
@@ -29,10 +31,12 @@ class CommentController extends Controller
 
     private $user;
 
+    protected $commentRepository;
+
     public function __construct () {
         $this->middleware('auth');
         $this->user = Auth::user();
- 
+        $this->commentRepository = new CommentRepository(new Comment);
     }
 
 
@@ -65,13 +69,13 @@ class CommentController extends Controller
     public function store(CommentRequest $request) {
 
         $id = func_get_arg(1);
-        $currentPath = Route::getFacadeRoot()->current()->uri();
-
-        if (strpos($currentPath, 'reviews')) {
-            return $this->storeReview($request, $id);
-        }
-        else 
-            return $this->storeProduct($request, $id);
+        $this->commentRepository->store(
+            $request, 
+            $id, 
+            Route::getFacadeRoot()->current()->uri(),
+            $this->user
+            );
+        return Redirect::back();
     }
 
     /**

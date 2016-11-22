@@ -18,18 +18,18 @@ class Product extends Model implements Votingable
     public $timestamp = false;
 
     public function category() {
-    	return $this->belongsTo('App\Category');
+    	return $this->belongsTo('App\Models\Category');
     }
     public function supplier() {
-    	return $this->belongsTo('App\Supplier');
+    	return $this->belongsTo('App\Models\Supplier');
     }
 
     public function item() {
-    	return $this->hasOne('App\ProductItem');
+    	return $this->hasOne('App\Models\ProductItem');
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment', 'Commentable');
+        return $this->morphMany('App\Models\Comment', 'Commentable');
     }
 
 }

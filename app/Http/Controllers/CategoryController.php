@@ -26,11 +26,12 @@ use App\Models\Vote;
 class CategoryController extends Controller
 {
 
-    private $user;
+    protected $user;
 
     protected $categoryRepository;
 
     public function __construct() {
+        $this->middleware('admin');
         $this->user = Auth::user();
         $this->categoryRepository = new CategoryRepository(new Category);
     }
@@ -86,6 +87,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = $this->categoryRepository->findById($id);
+
+        // Thay bang class ProductRepository
         $popular_products = Product::where('category_id', '=', $id)->get();
 
         $data = array (
@@ -149,7 +152,7 @@ class CategoryController extends Controller
             'message' => $message,
             'user' => $this->user,
             );
-        
+
         return Redirect::route('categories.index')->with($data);
     }
 }

@@ -18,10 +18,10 @@ class Review extends Model
     }
 
     public function comments() {
-    	return $this->morphMany('App\Comment', 'commentable');
+    	return $this->morphMany('App\Models\Comment', 'commentable');
     }
 
     public function votes() {
-        return $this->morphMany('App\Vote', 'voteable');
+        return $this->morphMany('App\Models\Vote', 'voteable');
     }
 }
