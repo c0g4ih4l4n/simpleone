@@ -46,15 +46,18 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function createNew(Request $request) {
 
-		$category = new Category;
-		$category['category_name'] = $request['category_name'];
-        $category['category_description'] = $request['category_description'];
-        $category->order_number = 1;
-        $category['number_of_products'] = 0;
-        $category->save();
+		$category = Category::create([
+			'category_name' => $request['category_name'],
+        	'category_description' => $request['category_description'],
+        	'order_number' => 1,
+        	'number_of_products' => 0
+        ]);
+
+        if (!$category->id) {
+        	App::abort(500, 'Some Error');
+        }
 
         $message = 'Success';
-
         return $message;
 	}
 
@@ -80,6 +83,25 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 		$category = Category::destroy($id);
 
         return "Success";
+	}
+
+	public function increaseNumOfProduct($categoryName) 
+	{
+		$category = $this->findByName($categoryName);
+        $category->number_of_products ++;
+        if ($category->save())
+        	return true;
+        return false;
+	}
+
+	public function findByName($categoryName)
+	{
+		return Category::where('category_name', 'LIKE', $categoryName)->get()->firstOrFail();
+	}
+
+	public function getIdByName($categoryName) 
+	{
+		return $this->findByName($categoryName)->id;
 	}
 
 }

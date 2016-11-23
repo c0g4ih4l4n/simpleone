@@ -12,6 +12,9 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
+
+use App\Repositories\Eloquent\ProductRepository;
 
 use App\Models\Category;
 use App\Models\Product;
@@ -27,11 +30,13 @@ class ProductController extends Controller
 
     private $user;
 
+    protected $productRepository;
 
     public function __construct() {
         if (Auth::check()) {
             $this->user = Auth::user();
         }
+        $this->productRepository = new ProductRepository(new Product);
     }
     /**
      * Display a listing of the resource.
@@ -40,13 +45,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = $this->productRepository->listAll();
         
-        foreach ($products as $product) {
-            $product['category_name'] = $product->category->category_name;
-            $product['supplier_name'] = $product->supplier->supplier_name;
-            $product['price'] = $product->item->price;
-        }
         $data = array (
             'user' => $this->user,
             'products' => $products,
@@ -78,43 +78,11 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-                // Add Product
-        $product = new Product();
-        $product['product_name'] = $request['product_name'];
-        $product['product_description'] = $request['product_description'];
-        $product['quantity'] = $request['quantity'];
+        // Add Product
+        $this->middleware('admin');
 
-        $product_cat = new Category();
-        $product_cat = Category::where('category_name', 'LIKE', $request['category_name'])->get()->first();
-        $product_cat->number_of_products ++;
+        $this->productRepository->store($request);
 
-        $product_supplier = new Supplier();
-        $product_supplier = Supplier::where('supplier_name', 'LIKE', $request['supplier_name'])->get()->first()->toArray();
-
-        // echo '<pre>';
-        //     print_r($product_cat);
-        // echo '</pre>';
-
-        $product['category_id'] = $product_cat['id'];
-        $product['supplier_id'] = $product_supplier['id'];
-
-        $product->save();
-
-        $product_cat->save();
-
-
-        $product = Product::where('product_name', '=', $request['product_name'])->first();
-
-        // Add Product Item
-        $product_item = new ProductItem();
-        $product_item['color'] = $request['color'];
-        $product_item['price'] = $request['price'];
-        $product_item['quantity'] = $request['quantity'];
-        $product_item['product_id'] = $product['id'];
-        $product_item->save();
-
-        // Message to notify that added successful
-        $message = "Success";
         return Redirect::route('admin.products.create')->with('message', $message);
     }
 

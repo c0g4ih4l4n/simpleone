@@ -10,6 +10,34 @@ use App\Vote;
 
 class Product extends Model implements Votingable
 {
+
+    public function __construct()
+    {
+
+    }
+
+    public static function withRequest(Request $request)
+    {
+
+        $product = new self();
+        $product['product_name'] = $request['product_name'];
+        $product['product_description'] = $request['product_description'];
+        $product['quantity'] = $request['quantity'];
+
+        $categoryRepository = new CategoryRepository(new Category);
+
+        $supplierRepository = new SupplierRepository(new Supplier);
+
+        // echo '<pre>';
+        //     print_r($product_cat);
+        // echo '</pre>';
+
+        $product['category_id'] = $categoryRepository->getIdByName($request->category_name);
+        $product['supplier_id'] = $supplierRepository->getIdByName($request->supplier_name);
+
+        return $product;
+    }
+
     use VoteTrait;
     protected $table = "products";
 
