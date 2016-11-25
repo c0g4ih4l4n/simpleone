@@ -14,6 +14,7 @@ use App\Models\Category;
 class SearchController extends Controller
 {
 
+	protected $user;
 	protected $categories;
 
 	public function __construct() 
