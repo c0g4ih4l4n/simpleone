@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
 use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductEditRequest;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -79,9 +79,8 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         // Add Product
-        $this->middleware('admin');
 
-        $this->productRepository->store($request);
+        $message = $this->productRepository->store($request);
 
         return Redirect::route('admin.products.create')->with('message', $message);
     }
@@ -94,11 +93,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        $product['price'] = $product->item->price;
-        $product->category_name = $product->category->category_name;
-        $product->vote = $product->votes;
-        $product->vote->aveVote = $product->averageVote();
+        $product = $this->productRepository->getById($id);
         $comments = $product->comments;
         foreach ($comments as $comment) {
             $comment->user_name = $comment->user->name;
@@ -149,7 +144,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductEditRequest $request, $id)
     {
         $product = Product::find($id);
 
@@ -215,7 +210,7 @@ class ProductController extends Controller
         $category->number_of_products--;
         $category->save();
 
-        return view('admin.products.index');
+        return $this->index();
     }
 }
 

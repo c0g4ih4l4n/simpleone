@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
+
+use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Eloquent\SupplierRepository;
+
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Contracts\Votingable;
 use App\Http\Traits\Votingable as VoteTrait;
 
-use App\Vote;
+use App\Models\Vote;
+use App\Models\Supplier;
 
 class Product extends Model implements Votingable
 {
@@ -60,4 +66,16 @@ class Product extends Model implements Votingable
         return $this->morphMany('App\Models\Comment', 'Commentable');
     }
 
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+
+            $query->where(function ($query) use ($keyword) {
+                $query->where("product_name", "LIKE","%$keyword%");
+                    // ->orWhere("category_name", "LIKE", "%$keyword%")
+                    // ->orWhere("supplier_name", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
 }

@@ -1,4 +1,4 @@
-<form id="search-form" action="">
+<form id="search-form" action="{{ URL::route('search') }}" method="GET">
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="category-dropdown">All <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
@@ -8,6 +8,6 @@
         @endforeach
         </ul>
     </div>
-    <input class="form-control" type="search" placeholder="Search Here" id="search-field">
-    <button class="btn btn-warning" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+    <input class="form-control" type="search" placeholder="Search Here" id="search-field" name="keyword">
+    <button class="btn btn-warning" type="submit"> <span class="glyphicon glyphicon-search"></span></button>
 </form>

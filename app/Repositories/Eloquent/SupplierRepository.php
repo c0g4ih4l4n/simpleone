@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Models\Supplier;
+namespace App\Repositories\Eloquent;
+
+use App\Models\Supplier;
+
 
 class SupplierRepository extends AbstractRepository
 {
@@ -14,7 +17,7 @@ class SupplierRepository extends AbstractRepository
 
 	public function findByName($supplierName) 
 	{
-		return Supplier::where('supplier_name', 'LIKE', $supplierName)->get()->firstOrFail();
+		return Supplier::where('supplier_name', 'LIKE', $supplierName)->get()->first();
 	}
 
 	public function getIdByName($supplierName)

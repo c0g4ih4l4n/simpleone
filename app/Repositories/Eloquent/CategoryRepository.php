@@ -96,7 +96,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function findByName($categoryName)
 	{
-		return Category::where('category_name', 'LIKE', $categoryName)->get()->firstOrFail();
+		return Category::where('category_name', 'LIKE', $categoryName)->get()->first();
 	}
 
 	public function getIdByName($categoryName) 

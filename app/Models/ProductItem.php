@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
+
 use Illuminate\Database\Eloquent\Model;
+
+use App\Repositories\Eloquent\ProductRepository;
 
 class ProductItem extends Model
 {
@@ -12,16 +16,18 @@ class ProductItem extends Model
 
 	}
 
-	public static function withRequest()
+	public static function withRequest(Request $request)
 	{
 		$product_item = new self();
 
 		$product_item['color'] = $request['color'];
         $product_item['price'] = $request['price'];
         $product_item['quantity'] = $request['quantity'];
-        $product_item['product_id'] = $this->getIdByName($request->product_name);
 
+        $productRepository = new ProductRepository(new Product);
+        $product_item['product_id'] = $productRepository->getIdByName($request->product_name);
         
+        return $product_item;
 	}
 
     protected $table = "products_item";
@@ -31,4 +37,10 @@ class ProductItem extends Model
     ];
 
     public $timestamp = false;
+
+   	public function product() 
+	{
+		return $this->belongsTo('App\Models\Product');
+	}
+
 }
