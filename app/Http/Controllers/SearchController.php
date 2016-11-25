@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
 
@@ -19,6 +20,8 @@ class SearchController extends Controller
 
 	public function __construct() 
 	{
+		if (Auth::check()) 
+			$this->user = Auth::user();
         $this->categories = Category::all();
 	}
 
@@ -28,6 +31,7 @@ class SearchController extends Controller
 		$products = Product::SearchByKeyword($keyword)->get();
 
 		$data = array (
+			'user' => $this->user,
 			'keyword' => $keyword,
 			'products' => $products,
 			'sort_categories' => $this->categories
