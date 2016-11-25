@@ -69,7 +69,6 @@ Route::group(['middleware' => 'web'], function () {
 				'destroy' => 'comments.destroy',
 			]]);
 		});
-
 		
 	});
 	
@@ -77,6 +76,9 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('change-pass/{id}', ['as' => 'change_pass', 'middleware' => 'auth', 'uses' => 'UserController@change_pass']);
 	Route::post('change-pass/{id}', ['as' => 'update_pass', 'middleware' => 'auth', 'uses' => 'UserController@update_pass']);
+
+	// Route to get photo from Storage and response to browser
+	Route::get('photo/get/{name}', ['as' => 'get_photo', 'uses' => 'PhotoController@getPhoto']);
 
 });
 

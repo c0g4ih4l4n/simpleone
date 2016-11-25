@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
+
 use App\Repositories\Eloquent\CategoryRepository;
 
 use App\Models\Category;
@@ -46,15 +50,9 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function createNew(Request $request) {
 
-		$images = $request->file('photo');
-		$fileName = "";
-		if ($request->file('photo')->isValid()) {
-			$destinationPath = 'assets/uploads';
-			$fileName = $request->photo->getFilename() . "." . $request->photo->extension();
-			$request->file('photo')->move($destinationPath, $fileName);
-
-		}
-		return $fileName;
+		$fileName = PhoToController::savePhoto($request);
+		if ($fileName == null) 
+			return 'File Type isn\'t not supported';
 
 		$category = Category::create([
 			'category_name' => $request['category_name'],
@@ -82,8 +80,15 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 		$category = Category::find($id);
 
+		$idNewName = $this->getIdByName($request->category_name);
+		if ($id != $idNewName) {
+			$errors []= 'Category Name has already exists';
+			return $errors;
+		}
+
         $category->category_name = $request->category_name;
         $category->category_description = $request->category_description;
+        $category->photo = $request->file('photo');
         $category->save();
         return "Success";
 	}

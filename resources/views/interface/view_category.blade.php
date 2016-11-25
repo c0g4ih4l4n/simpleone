@@ -9,7 +9,7 @@
     <div class="container" id="user-info-container">
         <div class="media">
             <div class="media-left col-md-3">
-                <a><img class="media-object img-responsive" src="{{ URL::asset('assets/uploads/' . $category['photo']) }}">
+                <a><img class="media-object img-responsive" src="{{ URL::route('get_photo', $category->photo)}}">
                 </a>
             </div>
             <div class="media-body">
