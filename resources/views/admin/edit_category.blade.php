@@ -2,7 +2,7 @@
 @section ('content')
 
 <div class="col-md-6 col-md-offset-3" id="add-category">
-    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.update', $category['id']) }}">
+    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.update', $category['id']) }}" enctype="multipart/form-data">
         {{ method_field('PUT')}}
         {{ csrf_field() }}
         @if (isset($message))
@@ -33,8 +33,8 @@
             <textarea class="form-control" name="category_description" >@if (isset($old)){!! $old['category_description'] !!}@else{!! $category['category_description'] !!}@endif</textarea>
         </div>
         <div class="form-group">
-            <label class="control-label" for="category_image">Category Image</label>
-            <input type="file" name="category_image" id="file-input">
+            <label class="control-label" for="photo">Category Image</label>
+            <input type="file" name="photo" id="file-input">
         </div>
         <div class="form-group">
             <div class="col-md-12 text-center">

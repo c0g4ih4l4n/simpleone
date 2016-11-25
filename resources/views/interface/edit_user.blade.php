@@ -1,7 +1,7 @@
 @extends ('template.main')
 @section ('content')
 <div class="col-md-6 col-md-offset-3">
-    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('users.update', $user_target->id) }}">
+    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('users.update', $user_target->id) }}" enctype="multipart/form-data">
         {{ method_field('PUT')}}
         {{ csrf_field() }}
         @if (isset($message))
@@ -63,8 +63,8 @@
 
         {{-- Avatar --}}
         <div class="form-group">
-            <label class="control-label" for="avatar">Avatar</label>
-            <input type="file" name="avatar" id="file-input">
+            <label class="control-label" for="photo">Avatar</label>
+            <input type="file" name="photo" id="file-input">
         </div>
 
         {{-- Submit --}}

@@ -46,6 +46,10 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function createNew(Request $request) {
 
+		if ($request->file('photo')->isValid()) {
+			$extension = $request->photo->extension();
+		}
+
 		$category = Category::create([
 			'category_name' => $request['category_name'],
         	'category_description' => $request['category_description'],

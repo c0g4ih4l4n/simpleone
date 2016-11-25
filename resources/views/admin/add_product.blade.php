@@ -3,7 +3,7 @@
 
     <div class="container" id="user-info-container">
         <div class="col-md-6 col-md-offset-3" id="add-category">
-            <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.products.store') }}">
+            <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.products.store') }}" enctype="multipart/form-data" multiple>
             {{ csrf_field() }}
             @if (isset($message))
                 <div class="alert alert-success">
@@ -52,8 +52,8 @@
                 </div>
                 <div class="form-group"></div>
                 <div class="form-group">
-                    <label class="control-label" for="product_image">Product Image</label>
-                    <input type="file" name="product_image">
+                    <label class="control-label" for="photo">Product Image</label>
+                    <input type="file" name="photo">
                 </div>
                 <div class="form-group">
                     <div class="col-md-12 text-center">

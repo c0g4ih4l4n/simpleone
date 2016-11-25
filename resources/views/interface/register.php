@@ -13,7 +13,7 @@
     <div></div>
     <div class="row register-form">
         <div class="col-md-8 col-md-offset-2">
-            <form class="form-horizontal custom-form">
+            <form class="form-horizontal custom-form" enctype="multipart/form-data">
                 <h1>Register Form</h1>
                 <div class="form-group">
                     <div class="col-sm-4 label-column">
