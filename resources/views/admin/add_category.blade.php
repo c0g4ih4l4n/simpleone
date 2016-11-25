@@ -2,7 +2,7 @@
 @section ('content')
 
 <div class="col-md-6 col-md-offset-3" id="add-category">
-    <form  class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}" enctype="multipart/form-data>
+    <form  class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         @if (isset($message))
             <div class="alert alert-success">
@@ -34,7 +34,7 @@
         <div class="form-group"></div>
         <div class="form-group">
             <label class="control-label" for="photo">Category Image</label>
-            <input type="file" name="photo[]" id="file-input" multiple>
+            <input type="file" name="photo" id="file-input">
         </div>
         <div class="form-group">
             <div class="col-md-12 text-center">

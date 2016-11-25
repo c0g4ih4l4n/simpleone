@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
 
-
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -46,15 +46,20 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function createNew(Request $request) {
 
+		$images = $request->file('photo');
+		$fileName = "";
 		if ($request->file('photo')->isValid()) {
-			$extension = $request->photo->extension();
+			$destinationPath = 'assets/uploads';
+			$fileName = $request->photo->getFilename() . "." . $request->photo->extension();
+			$request->file('photo')->move($destinationPath, $fileName);
 		}
 
 		$category = Category::create([
 			'category_name' => $request['category_name'],
         	'category_description' => $request['category_description'],
         	'order_number' => 1,
-        	'number_of_products' => 0
+        	'number_of_products' => 0,
+        	'photo' => $fileName
         ]);
 
         if (!$category->id) {

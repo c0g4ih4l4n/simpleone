@@ -14,10 +14,11 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category_name');
+            $table->string('category_name')->unique();
             $table->text('category_description');
-            $table->integer('order_number');
-            $table->integer('number_of_products');
+            $table->integer('order_number')->nullable();
+            $table->integer('number_of_products')->nullable();
+            $table->string('photo')->unique();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories');
+        Schema::dropIfExists('categories');
     }
 }
