@@ -52,7 +52,9 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 			$destinationPath = 'assets/uploads';
 			$fileName = $request->photo->getFilename() . "." . $request->photo->extension();
 			$request->file('photo')->move($destinationPath, $fileName);
+
 		}
+		return $fileName;
 
 		$category = Category::create([
 			'category_name' => $request['category_name'],

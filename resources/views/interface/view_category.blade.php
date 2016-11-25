@@ -8,8 +8,9 @@
     <h2 id="title-user-infomation">Category Name</h2>
     <div class="container" id="user-info-container">
         <div class="media">
-            <div class="media-left">
-                <a><img class="media-object" src="{{ URL::asset('assets/img/default.png') }}"></a>
+            <div class="media-left col-md-3">
+                <a><img class="media-object img-responsive" src="{{ URL::asset('assets/uploads/' . $category['photo']) }}">
+                </a>
             </div>
             <div class="media-body">
                 <h4 class="media-heading">Category Name</h4>
