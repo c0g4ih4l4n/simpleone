@@ -32,6 +32,13 @@
             <label class="control-label" for="category_description">Description </label>
             <textarea class="form-control" name="category_description" >@if (isset($old)){!! $old['category_description'] !!}@else{!! $category['category_description'] !!}@endif</textarea>
         </div>
+
+        <div class="form-group">
+            <label class="control-label" for="order_number">Order Number</label>
+            <input class="form-control" type="text" name="order_number" 
+            value="@if(isset($old)){!!$old['order_number']!!}@else{!!$category['order_number']!!}@endif">
+        </div>
+
         <div class="form-group">
             <label class="control-label" for="photo">Category Image</label>
             <input type="file" name="photo" id="file-input">

@@ -98,6 +98,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
         $category->category_name = $request->category_name;
         $category->category_description = $request->category_description;
+        $category->order_number = $request->order_number;
 
         if ($request->hasFile('photo'))
         {
@@ -150,7 +151,9 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 	{
 		$category = Category::find($id);
 
-		$category->photo = $category->photos->last()->name;
+		if ($category->photos->last() == null) 
+			$category->photo = null;
+		else $category->photo = $category->photos->last()->name;
 		return $category;
 	}
 }
