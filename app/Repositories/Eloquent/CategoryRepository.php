@@ -50,7 +50,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function createNew(Request $request) {
 
-		$fileName = PhoToController::savePhoto($request);
+		$fileName = PhotoUploadRepository::savePhoto($request);
 		if ($fileName == null) 
 			return 'File Type isn\'t not supported';
 
@@ -80,22 +80,28 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 		$category = Category::find($id);
 
-		$idNewName = $this->getIdByName($request->category_name);
-		if ($id != $idNewName) {
+		if ($id != $this->getIdByName($request->category_name)) {
 			$errors []= 'Category Name has already exists';
 			return $errors;
 		}
 
         $category->category_name = $request->category_name;
         $category->category_description = $request->category_description;
-        $category->photo = $request->file('photo');
+
+        if ($request->hasFile('photo') 
+        	&& $request->file('photo')->isValid())
+        {
+        	$fileName = PhoToUploadRepository::savePhoto($request);
+        	$category->photo = $fileName;
+        }
+
         $category->save();
+
         return "Success";
 	}
 
 	public function delete($id)
 	{
-
 		$category = Category::destroy($id);
 
         return "Success";

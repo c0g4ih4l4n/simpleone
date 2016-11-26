@@ -48,16 +48,7 @@
             </table>
         </div>
         <a href="{!! URL::route('admin.products.create') !!}">Add New Product</a>
-        <nav>
-            <ul class="pagination">
-                <li><a aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a aria-label="Next"><span aria-hidden="true">»</span></a></li>
-            </ul>
-        </nav>
+        
+        @include ('template.pagination')
     </div>
 @endsection

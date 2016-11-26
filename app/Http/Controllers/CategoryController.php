@@ -75,7 +75,7 @@ class CategoryController extends Controller
 
         $message = $this->categoryRepository->createNew($request);
 
-        return Redirect::route('admin.categories.create')->with('message', $message);
+        return Redirect::route('admin.categories.index')->with('message', $message);
     }
 
     /**

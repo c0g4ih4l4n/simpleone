@@ -1,4 +1,9 @@
 
+/**
+ * For post Comment using ajax
+ * @param  {int} id this is an id of object user comment to
+ * @return {response}
+ */
 function postComment(id){
 	$.ajax({
 		type:'POST',
@@ -9,6 +14,14 @@ function postComment(id){
 		}
 	});
 }
+
+
+$(function() {
+    $('.confirm').click(function(event) {
+        return window.confirm("Are you sure?");
+    });
+});
+
 
 // jquery change click category
 $(document).ready(function () {
