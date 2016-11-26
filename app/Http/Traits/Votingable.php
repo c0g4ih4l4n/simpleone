@@ -41,10 +41,11 @@ trait Votingable {
 		
 	}
 
-	public function delete() {
-
+	public function deleteVote()
+	{
+		
 	}
-
+	
 	public function hello() {
 		return 'Hello';
 	}

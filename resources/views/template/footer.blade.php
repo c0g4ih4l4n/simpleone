@@ -1,7 +1,5 @@
 
 
-
-
     <a href="#header" class="btn btn-link" type="button" id="back-top">Back to Top</a>
 
     <footer>

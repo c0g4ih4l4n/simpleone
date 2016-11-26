@@ -24,7 +24,7 @@ class ProductEditRequest extends Request
     public function rules()
     {
         return [
-            'product_name' => 'required|max:20|exists:products,product_name',
+            'product_name' => 'required|max:20',
             'category_name' => 'required|max:20|exists:categories,category_name',
             'color' => 'required|max:20',
             'price' => 'required|numeric|between:0,100000',

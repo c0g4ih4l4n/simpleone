@@ -17,7 +17,6 @@ class UsersTableSeeder extends Seeder
         	'email' => 'example' . '@example.com',
         	'user_balance' => 0,
         	'user_level' => 1,
-        	'avatar' => 'default.png'
         	]);
     }
 }

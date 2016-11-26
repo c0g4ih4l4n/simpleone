@@ -18,7 +18,7 @@ class Product extends Model implements Votingable
 {
 
     use VoteTrait;
-    protected $table = "products";
+    protected $table = 'products';
 
     protected $fillable = ['product_name', 'product_description', 'quantity', 'category_id', 'supplier_id'];
 

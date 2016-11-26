@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Response;
 
 use App\Repositories\Eloquent\ProductRepository;
+use App\Repositories\Eloquent\CategoryRepository;
 
 use App\Models\Category;
 use App\Models\Product;
@@ -32,11 +33,14 @@ class ProductController extends Controller
 
     protected $productRepository;
 
+    protected $categoryRepository;
+
     public function __construct() {
         if (Auth::check()) {
             $this->user = Auth::user();
         }
         $this->productRepository = new ProductRepository(new Product);
+        $this->categoryRepository = new CategoryRepository(new Category);
     }
     /**
      * Display a listing of the resource.
@@ -79,7 +83,6 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         // Add Product
-
         $message = $this->productRepository->store($request);
 
         return Redirect::route('admin.products.index')->with('message', $message);
@@ -122,13 +125,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
-        $product = Product::find($id);
-        $product['category_name'] = $product->Category->category_name;
-        $product['supplier_name'] = $product->supplier->supplier_name;
-        $product['color'] = $product->item->color;
-        $product['price'] = $product->item->price;
-        $product['quantity'] = $product->item->quantity;
+        $product = $this->productRepository->getById($id);
 
         $data = array (
             'product' => $product,
@@ -146,34 +143,7 @@ class ProductController extends Controller
      */
     public function update(ProductEditRequest $request, $id)
     {
-        $product = Product::find($id);
-
-        $product->product_name = $request->product_name;
-        $product->product_description = $request->product_description;
-        $product->quantity = $request->quantity;
-
-        if ($product->supplier->supplier_name != $request->supplier_name) {
-            $product_supplier = Supplier::where('supplier_name', 'LIKE', $request['supplier_name'])->get()->first()->toArray();
-            $product['supplier_id'] = $product_supplier['id'];
-        }
-
-        // kiem tra cac dieu kien de update
-        if ($product->category->category_name != $request->category_name) {
-            $product_cat_new = Category::where('category_name', 'LIKE', $request['category_name'])->get()->first();
-            $product_cat_new->number_of_products ++;
-            
-            $product_cat_old = Category::where('category_name', 'LIKE', $product->category->category_name)->get()->first();
-            $product_cat_old->number_of_products --;
-            $product['category_id'] = $product_cat_new['id'];
-
-            $product_cat_old->save();        
-            $product_cat_new->save();
-        }
-
-        $product->save();
-
-
-
+        $this->productRepository->updateProduct($request, $id);
 
         $product = Product::where('product_name', '=', $request['product_name'])->first();
 
@@ -184,7 +154,7 @@ class ProductController extends Controller
         $product_item['quantity'] = $request['quantity'];
         $product_item->save();
 
-        // Message to notify that added successful
+        // // Message to notify that added successful
         $message = "Success";
         return Redirect::route('admin.products.index')->with('message', $message);
 
@@ -198,19 +168,16 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $product = Product::findOrFail($id);
+    {    
+        $message = $this->productRepository->deleteById($id);   
 
-        ProductItem::where('product_id', '=', $id)->delete();
+        $data = array (
+            'message' => $message,
+            'user' => $this->user,
+            );
 
-        Product::destroy($id);
-        
-        // Xoa product xong => giam so san pham trong category
-        $category = Category::findOrFail($product['category_id']);
-        $category->number_of_products--;
-        $category->save();
-
-        return $this->index();
+        return Redirect::route('admin.products.index')->with($data);
     }
+
 }
 

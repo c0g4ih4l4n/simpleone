@@ -13,6 +13,7 @@ use Illuminate\Http\Response;
 
 use App\Models\Photo;
 use App\Models\Category;
+use App\Models\Product;
 
 class PhotoRepository extends AbstractRepository
 {
@@ -67,6 +68,15 @@ class PhotoRepository extends AbstractRepository
 		$photo = $this->getNew();
 		$photo->name = $fileName;
 		$category->photos()->save($photo);
+	}
+
+	public function savePhotoProduct($fileName, $id)
+	{
+		$product = Product::find($id);
+
+		$photo = $this->getNew();
+		$photo->name = $fileName;
+		$product->photos()->save($photo);
 	}
 
 	public function savePhotoToStorage(UploadedFile $file) 

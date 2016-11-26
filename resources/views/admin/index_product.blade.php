@@ -35,12 +35,12 @@
                         <td><a href="#">{!! $product['supplier_name'] !!}</a></td>
                         <td><a href="{!! URL::route('admin.products.edit', $product['id']) !!}">Edit </a></td>
                         <td>
-                        <form method="POST" action="{{ route('admin.products.destroy', $product['id']) }}">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="id" value="{{ $product['id'] }}">
-                            <button type='submit' class="btn btn-link">Delete</button>
-                        </form>
+                            <form method="POST" action="{{ URL::route('admin.products.destroy', $product['id']) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="id" value="{{ $product['id'] }}">
+                                <button type='submit' class="btn btn-link">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

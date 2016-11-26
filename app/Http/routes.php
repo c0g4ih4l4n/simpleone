@@ -97,4 +97,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 );
 
 // Categories
-Route::get('/test', 'VotingController@test');
+Route::get('/test/{id}', 'ProductController@test');

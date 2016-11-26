@@ -58,15 +58,19 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 	public function createNew(CategoryRequest $request) 
 	{
 		$photoRepository = new PhotoRepository(new Photo);
-		$file = $request->file('photo');
 
-		if (!$photoRepository->checkValidPhoto($file))
+		$fileName = "";
+		if ($request->hasFile('photo'))
 		{
-			$errors []= 'File Type isn\'t not supported';
-			return $errors;
+			$file = $request->file('photo');
+			if (!$photoRepository->checkValidPhoto($file))
+			{
+				$errors []= 'File Type isn\'t not supported';
+				return $errors;
+			}
+			$fileName = $photoRepository->getFileName($file);
 		}
 
-		$fileName = $photoRepository->getFileName($file);
 
 		$category = Category::create([
 			'category_name' => $request['category_name'],
@@ -135,6 +139,14 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
         if ($category->save())
         	return true;
         return false;
+	}
+
+	public function decreaseNumOfProduct($categoryId)
+	{
+		$category = Category::find($categoryId);
+		if ($category->number_of_products > 0)
+			$category->number_of_products--;
+		$category->save();
 	}
 
 	public function findByName($categoryName)

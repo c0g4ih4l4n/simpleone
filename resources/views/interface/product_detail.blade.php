@@ -7,8 +7,8 @@
     </ol>
     <div class="container">
         <div class="row product">
-            <div class="col-md-5 col-md-offset-0"><img class="img-responsive" src="{!! URL::asset('assets/img/suit_jacket.jpg') !!}"></div>
-            <div class="col-md-7">
+            <div class="col-md-4 col-md-offset-0"><img class="img-responsive" src="{!! URL::route('get_photo', $product->photo) !!}"></div>
+            <div class="col-md-8">
                 <h2>{!! $product['product_name'] !!}</h2>
                 <p>{!! $product['product_description'] !!} </p>
                 <select>
@@ -33,7 +33,8 @@
             </div>
         </div>
         <div class="page-header">
-            <h3>Product Details</h3></div>
+            <h3>Product Details</h3>
+        </div>
         <p>Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
         <div class="table-responsive">
             <table class="table table-striped">

@@ -47,6 +47,6 @@
         </div>
         <a href="{!! URL::route('admin.categories.create') !!}">Create New Category</a>
 
-        @include ('template.pagination');
+        @include ('template.pagination')
     </div>
 @endsection
