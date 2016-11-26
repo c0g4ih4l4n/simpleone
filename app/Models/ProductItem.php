@@ -43,4 +43,9 @@ class ProductItem extends Model
 		return $this->belongsTo('App\Models\Product');
 	}
 
+	public function photos()
+	{
+		return $this->morphMany('App\Models\Photo', 'photo');
+	}
+
 }

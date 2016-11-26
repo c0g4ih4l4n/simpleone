@@ -18,7 +18,6 @@ class CreateCategoriesTable extends Migration
             $table->text('category_description');
             $table->integer('order_number')->nullable();
             $table->integer('number_of_products')->nullable();
-            $table->string('photo')->unique();
             $table->timestamps();
         });
     }

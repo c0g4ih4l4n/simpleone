@@ -17,6 +17,13 @@ use App\Models\Supplier;
 class Product extends Model implements Votingable
 {
 
+    use VoteTrait;
+    protected $table = "products";
+
+    protected $fillable = ['product_name', 'product_description', 'quantity', 'category_id', 'supplier_id'];
+
+    public $timestamp = true;
+
     public function __construct()
     {
 
@@ -44,12 +51,7 @@ class Product extends Model implements Votingable
         return $product;
     }
 
-    use VoteTrait;
-    protected $table = "products";
 
-    protected $fillable = ['product_name', 'product_description', 'quantity', 'category_id', 'supplier_id'];
-
-    public $timestamp = false;
 
     public function category() {
     	return $this->belongsTo('App\Models\Category');
@@ -63,7 +65,12 @@ class Product extends Model implements Votingable
     }
 
     public function comments() {
-        return $this->morphMany('App\Models\Comment', 'Commentable');
+        return $this->morphMany('App\Models\Comment', 'commentable');
+    }
+
+    public function photos()
+    {
+        return $this->morphMany('App\Models\Photo', 'photo');
     }
 
     public function scopeSearchByKeyword($query, $keyword)

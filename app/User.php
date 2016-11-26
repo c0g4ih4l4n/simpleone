@@ -23,4 +23,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $timestamp = true;
+
+    public function avatars() 
+    {
+        return $this->morphMany('App\Models\Photo', 'photo');
+    }
 }

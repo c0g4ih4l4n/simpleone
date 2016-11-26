@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ use App\Models\Comment;
 use App\User;
 use App\Models\Review;
 use App\Models\Vote;
+use App\Models\Photo;
 
 class CategoryController extends Controller
 {
@@ -61,6 +63,7 @@ class CategoryController extends Controller
     public function create()
     {
         $message = Session::get('message');
+
         return view('admin.add_category', ['user' => $this->user, 'message' => $message]);
     }
 
@@ -72,7 +75,6 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-
         $message = $this->categoryRepository->createNew($request);
 
         return Redirect::route('admin.categories.index')->with('message', $message);
@@ -125,7 +127,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
 
         $message = $this->categoryRepository->update($request, $id);
@@ -134,6 +136,7 @@ class CategoryController extends Controller
             'message' => $message,
             'user' => $this->user,
             );
+
         return Redirect::route('categories.index')->with($data);
 
     }

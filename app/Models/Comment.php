@@ -11,6 +11,8 @@ class Comment extends Model
 
     protected $fillable = ['content', 'user_id', 'commentable_id', 'commentable_type', 'created_at', 'updated_at'];
 
+    protected $timestamp = true;
+
     public function User() {
     	return $this->belongsTo('App\User');
     }

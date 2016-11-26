@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->integer('user_balance');
             $table->integer('user_level');
-            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });

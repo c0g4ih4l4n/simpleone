@@ -82,7 +82,7 @@ class ProductController extends Controller
 
         $message = $this->productRepository->store($request);
 
-        return Redirect::route('admin.products.create')->with('message', $message);
+        return Redirect::route('admin.products.index')->with('message', $message);
     }
 
     /**

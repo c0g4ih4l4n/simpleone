@@ -6,6 +6,7 @@ use App\Repositories\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Requests\ProductRequest;
 
 use Illuminate\Http\UploadedFile;
@@ -27,60 +28,70 @@ use App\Models\Comment;
 use App\User;
 use App\Models\Review;
 use App\Models\Vote;
+use App\Models\Photo;
 
 class CategoryRepository extends AbstractRepository implements CategoryRepositoryInterface 
 {
+
+	protected $type = 'category';
 
 	/**
 	 * Create a new DbCategoryRepository instance
 	 * @param \App\Models\Category $category
 	 * @return void
 	 */
-	public function __construct(Category $category) {
+	public function __construct(Category $category) 
+	{
 		$this->model = $category;
 	}
 
-	public function listAll() {
+	public function listAll() 
+	{
 		return Category::all();
 	}
 
-	public function findAll($orderColumn = 'created_at', $orderDir = 'desc') {
+	public function findAll($orderColumn = 'created_at', $orderDir = 'desc') 
+	{
 
 	}
 
-	public function createNew(Request $request) {
+	public function createNew(CategoryRequest $request) 
+	{
+		$photoRepository = new PhotoRepository(new Photo);
+		$file = $request->file('photo');
 
-		$fileName = PhotoUploadRepository::savePhoto($request);
-		if ($fileName == null) 
-			return 'File Type isn\'t not supported';
+		if (!$photoRepository->checkValidPhoto($file))
+		{
+			$errors []= 'File Type isn\'t not supported';
+			return $errors;
+		}
+
+		$fileName = $photoRepository->getFileName($file);
 
 		$category = Category::create([
 			'category_name' => $request['category_name'],
         	'category_description' => $request['category_description'],
         	'order_number' => 1,
-        	'number_of_products' => 0,
-        	'photo' => $fileName
+        	'number_of_products' => 0
         ]);
 
-        if (!$category->id) {
+        if (!$category->id) 
+        {
         	App::abort(500, 'Some Error');
         }
+
+        $photoRepository->savePhoto($file, $this->type, $category->id);
 
         $message = 'Success';
         return $message;
 	}
 
-	public function findById($id) {
-
-		return Category::find($id);
-	}
-
-	public function update($request, $id) 
+	public function update(CategoryUpdateRequest $request, $id) 
 	{
-
 		$category = Category::find($id);
 
-		if ($id != $this->getIdByName($request->category_name)) {
+		if (($this->getIdByName($request->category_name) != null) && ($id != $this->getIdByName($request->category_name))) 
+		{
 			$errors []= 'Category Name has already exists';
 			return $errors;
 		}
@@ -88,11 +99,20 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
         $category->category_name = $request->category_name;
         $category->category_description = $request->category_description;
 
-        if ($request->hasFile('photo') 
-        	&& $request->file('photo')->isValid())
+        if ($request->hasFile('photo'))
         {
-        	$fileName = PhoToUploadRepository::savePhoto($request);
-        	$category->photo = $fileName;
+        	$photoRepository = new PhotoRepository(new Photo);
+        	$file = $request->file('photo');
+
+        	if (!$photoRepository->checkValidPhoto($file))
+			{
+				$errors []= 'File Type isn\'t not supported';
+				return $errors;
+			}
+
+			$fileName = $photoRepository->getFileName($file);
+
+        	$photoRepository->savePhoto($file, $this->type, $category->id);
         }
 
         $category->save();
@@ -123,10 +143,14 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function getIdByName($categoryName) 
 	{
-		return $this->findByName($categoryName)->id;
+		return $this->findByName($categoryName)['id'];
 	}
 
+	public function findById($id) 
+	{
+		$category = Category::find($id);
+
+		$category->photo = $category->photos->last()->name;
+		return $category;
+	}
 }
-
-
-?>
