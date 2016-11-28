@@ -112,7 +112,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -126,9 +126,8 @@ class UserController extends Controller
         //
     }
 
-    public function change_pass (Request $request, $id) {
-
-
+    public function change_pass (Request $request, $id) 
+    {
         if ($this->user->id != $id) 
             return Redirect::route('home');
 
@@ -138,32 +137,25 @@ class UserController extends Controller
             );
 
         return view('interface.change_pass')->with($data);
-
-
     }
 
-    public function update_pass (Request $request, $id) {
-
+    public function update_pass (Request $request, $id) 
+    {
         if ($this->user->id != $id) 
             return Redirect::route('home');
 
         $user_change_pass = User::find($id);
 
-        if (Hash::check($request->password, $user_change_pass->password)) {
-            if ($request->new_password == $request->confirm_password) {
+        if (Hash::check($request->password, $user_change_pass->password)) 
+        {
+            if ($request->new_password == $request->confirm_password) 
+            {
                 $user_change_pass->password = bcrypt($request->new_password);
                 $user_change_pass->save();
                 return Redirect::route('users.show', $id);
             }
-            else {
-                return redirect()->back();
-            }
-        }
-        else {
-            return redirect()->back();
         }
 
-
+        return redirect()->back();
     }
-
 }

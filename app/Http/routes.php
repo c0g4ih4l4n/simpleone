@@ -72,8 +72,6 @@ Route::group(['middleware' => 'web'], function () {
 		
 	});
 	
-
-
 	Route::get('change-pass/{id}', ['as' => 'change_pass', 'middleware' => 'auth', 'uses' => 'UserController@change_pass']);
 	Route::post('change-pass/{id}', ['as' => 'update_pass', 'middleware' => 'auth', 'uses' => 'UserController@update_pass']);
 
@@ -81,7 +79,6 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('photo/get/{name}', ['as' => 'get_photo', 'uses' => 'PhotoController@getPhoto']);
 
 });
-
 
 Route::auth();
 
@@ -97,4 +94,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 );
 
 // Categories
-Route::get('/test/{id}', 'ProductController@test');
+Route::get('/test', function () {
+	Cart::add('192ao12', 'Product 1', 1, 9.99);
+	Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
+
+	return view('test');
+});
