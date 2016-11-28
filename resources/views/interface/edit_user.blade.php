@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="control-label" for="email">Email </label>
             <input class="form-control" type="text" name="user_name" 
-            value="@if(isset($old)){!!$old->email!!}@else{!!$user_target->email!!}@endif">
+            value="@if(isset($old)){!!$old->email!!}@else{!!$user_target->email!!}@endif" disabled="disabled">
         </div>
 
 

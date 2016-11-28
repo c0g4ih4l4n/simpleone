@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -24,13 +25,18 @@ use App\User;
 use App\Models\Review;
 use App\Models\Vote;
 
+use App\Repositories\Eloquent\UserRepository;
+
 class UserController extends Controller
 {
     private $user;
-    
-    public function __construct () {
-        $this->user = Auth::user();
 
+    protected $modelUser;
+    
+    public function __construct () 
+    {
+        $this->user = Auth::user();
+        $this->modelUser = new UserRepository(new User);
     }
 
     /**
@@ -110,9 +116,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        
+        if ($this->user->id != $id && $this->user->user_level > 0)
+            return Redirect::back();
+
+        $this->modelUser->update($request, $id);
+
+        return $this->show($id);        
     }
 
     /**
@@ -144,17 +155,7 @@ class UserController extends Controller
         if ($this->user->id != $id) 
             return Redirect::route('home');
 
-        $user_change_pass = User::find($id);
-
-        if (Hash::check($request->password, $user_change_pass->password)) 
-        {
-            if ($request->new_password == $request->confirm_password) 
-            {
-                $user_change_pass->password = bcrypt($request->new_password);
-                $user_change_pass->save();
-                return Redirect::route('users.show', $id);
-            }
-        }
+        $this->modelUser->updatePassword($request, $id);
 
         return redirect()->back();
     }

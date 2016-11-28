@@ -14,6 +14,7 @@ use Illuminate\Http\Response;
 use App\Models\Photo;
 use App\Models\Category;
 use App\Models\Product;
+use App\User;
 
 class PhotoRepository extends AbstractRepository
 {
@@ -57,8 +58,10 @@ class PhotoRepository extends AbstractRepository
 
 		if ($fileType == 'category')
 			$this->savePhotoCategory($fileName, $id);
-		else if ($fileType = 'product')
+		else if ($fileType == 'product')
 			$this->savePhotoProduct($fileName, $id);
+		else if ($fileType == 'user')
+			$this->savePhotoUser($fileName, $id);
 	}
 
 	public function savePhotoCategory($fileName, $id)
@@ -77,6 +80,15 @@ class PhotoRepository extends AbstractRepository
 		$photo = $this->getNew();
 		$photo->name = $fileName;
 		$product->photos()->save($photo);
+	}
+
+	public function savePhotoUser($fileName, $id)
+	{
+		$user = User::findOrFail($id);
+
+		$photo = $this->getNew();
+		$photo->name = $fileName;
+		$user->avatars()->save($photo);
 	}
 
 	public function savePhotoToStorage(UploadedFile $file) 

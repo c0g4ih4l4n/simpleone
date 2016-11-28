@@ -3,8 +3,10 @@
     <h3 id="title-user-infomation">Account Information</h3>
     <div class="container" id="user-info-container">
 
-        <div class="profile-picture"><img src="{!! URL::asset('assets/img/default.png') !!}">
-            <input type="file" id="avatar-choose">
+        <div class="profile-picture">
+            @if ()
+            <img src="{!! URL::asset('assets/img/default.png') !!}">
+            @endif
         </div>
 
         <div class="user-info">
