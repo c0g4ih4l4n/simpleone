@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+use App\Presenters\UserPresenter;
+use McCool\LaravelAutoPresenter\HasPresenter;
+
+class User extends Authenticatable implements HasPresenter
 {
     /**
      * The attributes that are mass assignable.
@@ -29,5 +32,10 @@ class User extends Authenticatable
     public function avatars() 
     {
         return $this->morphMany('App\Models\Photo', 'photo');
+    }
+
+    public function getPresenterClass()
+    {
+        return UserPresenter::class;
     }
 }

@@ -157,7 +157,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        McCool\LaravelAutoPresenter\AutoPresenterServiceProvider::class
         // Laravel\Scout\ScoutServiceProvider::class,
 
     ],

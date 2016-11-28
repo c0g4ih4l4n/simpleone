@@ -3,9 +3,11 @@
     <h3 id="title-user-infomation">Account Information</h3>
     <div class="container" id="user-info-container">
 
-        <div class="profile-picture">
-            @if ()
-            <img src="{!! URL::asset('assets/img/default.png') !!}">
+        <div class="profile-picture col-md-3">
+            @if ($user_show->avatar == null)
+            <img src="{!! URL::asset('assets/img/default.png') !!}" class="img-responsive">
+            @else 
+            <img src="{{ URL::route('get_photo', $user_show->avatar) }}" class="img-responsive">
             @endif
         </div>
 
@@ -20,11 +22,11 @@
                     <tbody>
                         <tr>
                             <td>User Name</td>
-                            <td>{!! $user_show['name'] !!}</td>
+                            <td>{!! $user_show->name !!}</td>
                         </tr>
                         <tr>
                             <td>Email </td>
-                            <td>{!! $user_show['email'] !!}</td>
+                            <td>{!! $user_show->email !!}</td>
                         </tr>
                         <tr>
                             <td>Password </td>
@@ -32,7 +34,7 @@
                         </tr>
                         <tr>
                             <td>User Balance </td>
-                            <td>{!! $user['user_balance'] !!} $</td>
+                            <td>{!! $user->user_balance !!} $</td>
                         </tr>
                     </tbody>
                 </table>
