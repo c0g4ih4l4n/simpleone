@@ -74,4 +74,14 @@ class UserRepository extends AbstractRepository
         return Redirect::back()->with($errors);
 	}
 
+    public function deleteUser($id)
+    {
+        User::findOrFail($id);
+        User::destroy($id);
+
+        $message = 'Success';
+        
+        return $message;
+    }
+
 }

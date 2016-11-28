@@ -118,23 +118,12 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        if ($this->user->id != $id && $this->user->user_level > 0)
+        if ($this->user->id != $id && $this->user->user_level == 0)
             return Redirect::back();
 
         $this->modelUser->update($request, $id);
 
         return $this->show($id);        
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function change_pass (Request $request, $id) 
@@ -158,5 +147,23 @@ class UserController extends Controller
         $this->modelUser->updatePassword($request, $id);
 
         return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $message = $this->modelUser->deleteUser($id);
+
+        $data = array (
+            'message' => $message,
+            'user' => $this->user,
+        );
+
+        return $this->index()->with($data);
     }
 }

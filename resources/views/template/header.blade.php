@@ -31,7 +31,7 @@
                     <li class="active" role="presentation"><a href="{!! URL::to('login') !!}">Log In</a></li>
                     <li class="active" role="presentation"><a href="{!! URL::to('register') !!}">Register </a></li>
                 @elseif ($user->user_level == 0) 
-                    <li ><a href="{!! URL::route('users.show', $user->id) !!}">Hello, {!! $user['name'] !!}</a></li>
+                    <li ><a href="{!! URL::route('users.show', $user->id) !!}">Hello, {!! $user->name !!}</a></li>
                     <li class="active" role="presentation"><a href="{!! URL::to('logout') !!}">Log Out</a></li>
                 @else 
                     <li ><a href="{!! URL::route('users.show', $user->id) !!}">Hello, {!! $user->name !!}</a></li>
