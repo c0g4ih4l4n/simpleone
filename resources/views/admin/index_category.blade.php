@@ -13,7 +13,7 @@
                         <th>Category Name</th>
                         <th>Order Number</th>
                         <th>Number of Product</th>
-                        @if (!empty($user) && $user['user_level'] >0)
+                        @if (!empty($user) && $user->user_level > 0)
                         <th>Edit </th>
                         <th>Delete</th>
                         @endif
@@ -29,7 +29,7 @@
                         <td><a href="{!! URL::route('categories.show', $category['id']) !!}">{!! $category['category_name'] !!}</a></td>
                         <td>{!! $category['order_number'] !!}</td>
                         <td id="number_of_products_{{ $category['id'] }}">{!! $category['number_of_products'] !!}</td>
-                        @if (!empty($user) && $user['user_level'] >0)
+                        @if (!empty($user) && $user->user_level > 0)
                         <td><a href="{!! URL::route('admin.categories.edit', $category['id']) !!}">Edit </a></td>
                         <td>
                         <form method="POST" action="{{ route('admin.categories.destroy', $category['id']) }}">
