@@ -31,8 +31,9 @@ class AdminController extends Controller
     	
     }
 
-    public function index() {
-		return view('admin.admin', ['user' => $this->admin]);
+    public function index() 
+    {
+		return view('admin.index');
 
     }
 

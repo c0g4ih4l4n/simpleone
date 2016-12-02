@@ -1,5 +1,7 @@
 @include ('admin.template.header')
 
-@yield ('content')
+@section ('content')
+@include ('admin.template.navigation')
+@show
 
 @include ('admin.template.footer')

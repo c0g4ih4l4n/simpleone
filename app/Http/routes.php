@@ -82,7 +82,7 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::auth();
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'admin'], function () {
 
 		Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@index']);
 
@@ -95,5 +95,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
 // Categories
 Route::get('/test', function () {
-	return view('admin.user_list');
+	return view('admin.cate_add');
 });

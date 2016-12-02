@@ -1,8 +1,7 @@
 @extends ('admin.template.main')
 
-@include ('admin.template.navigation')
-
 @section ('content')
+@parent
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
