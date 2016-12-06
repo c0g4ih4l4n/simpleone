@@ -24,14 +24,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($categories as $category)
                         <tr class="odd gradeX" align="center">
-                            <td>1</td>
-                            <td>Tin Tức</td>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->category_name }}</td>
                             <td>None</td>
                             <td>Hiện</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
                         </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

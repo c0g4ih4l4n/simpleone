@@ -45,7 +45,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryRepository->listAll()->toArray();
+        $categories = $this->categoryRepository->listAll();
 
         $data = array (
             'user' => $this->user,

@@ -59,6 +59,11 @@ class ProductController extends Controller
         return view('admin.product_list')->with($data);
     }
 
+    public function listProduct()
+    {
+        return view('newTemplate.product');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

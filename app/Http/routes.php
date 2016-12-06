@@ -31,9 +31,14 @@ Route::group(['middleware' => 'web'], function () {
 		'uses' => 'VotingController@store',
 	]);
 	
-	Route::resource('categories', 'CategoryController', ['only' => ['show', 'index']]);
+	Route::get('/categories', ['as' => 'listCategory', 'uses' => 'HomeController@listCategory']);
 
-	Route::resource('products', 'ProductController', ['only' => ['show', 'index']]);
+	Route::get('/products', ['as' => 'listProduct', 'uses' => 'ProductController@listProduct']);
+	Route::resource('products', 'ProductController', ['only' => ['show']]);
+
+	Route::get('shoppingcarts', ['as' => 'shoppingcarts', 'uses' => 'CartController@list']);
+
+	Route::get('checkout', ['as' => 'checkout', 'uses' => 'CartController@checkOut']);
 
 	Route::resource('users', 'UserController', ['only' => ['show', 'index', 'edit', 'update']]);
 
