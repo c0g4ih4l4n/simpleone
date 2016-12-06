@@ -12,13 +12,24 @@
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->
-                @if (!empty($errors)) 
-                    @foreach ($errors as $error)
-                        {{ $error }}
-                    @endforeach
+                @if (isset($message))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{{ $message }}</li>
+                        </ul>
+                    </div>
+                @endif
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <div class="col-lg-7" style="padding-bottom:120px">
-                    <form action="{{ URL::route('admin.categories.store') }}" method="POST">
+                <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Category Parent</label>
@@ -54,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="photo">Image</label>
-                            <input type="file" name="photo" id="file-input">
+                            <input type="file" name="category_image" id="file-input">
                         </div>
                         <button type="submit" class="btn btn-default">Category Add</button>
                         <button type="reset" class="btn btn-default">Reset</button>
