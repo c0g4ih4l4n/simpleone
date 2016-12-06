@@ -156,6 +156,6 @@ class CategoryController extends Controller
             'user' => $this->user,
             );
 
-        return Redirect::route('categories.index')->with($data);
+        return Redirect::route('admin.categories.index')->with($data);
     }
 }

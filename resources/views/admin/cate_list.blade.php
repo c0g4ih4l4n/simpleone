@@ -30,8 +30,15 @@
                             <td>{{ $category->category_name }}</td>
                             <td>None</td>
                             <td>Hiện</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+
+                            <td><i class="fa fa-pencil fa-fw"></i><a href="{!! URL::route('admin.categories.edit', $category['id']) !!}">Edit </a></td>
+                            <td>
+                            <form method="POST" action="{{ route('admin.categories.destroy', $category['id']) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="id" value="{{ $category['id'] }}">
+                                <button type='submit' class="btn btn-link"><i class="fa fa-trash-o  fa-fw"></i>Delete</button>
+                            </form>
                         </tr>
                     @endforeach
                     </tbody>

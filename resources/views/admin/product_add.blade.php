@@ -13,22 +13,27 @@
                 </div>
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-7" style="padding-bottom:120px">
-                    <form action="" method="POST">
+                    <form action="{!! URL::route('admin.products.store') !!}" method="POST">
+                    {{ csrf_field() }}
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" name="txtName" placeholder="Please Enter Username" />
+                            <input class="form-control" name="product_name" placeholder="Please Enter Product Name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input class="form-control" name="category_name" placeholder="Please Enter Product" />
+                        </div>
+                        <div class="form-group">
+                            <label>Supplier</label>
+                            <input class="form-control" name="supplier_name" placeholder="Please Enter Product" />
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input class="form-control" name="quantity" placeholder="Please Enter Password" />
                         </div>
                         <div class="form-group">
                             <label>Price</label>
                             <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
-                        </div>
-                        <div class="form-group">
-                            <label>Intro</label>
-                            <textarea class="form-control" rows="3" name="txtIntro"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Content</label>
-                            <textarea class="form-control" rows="3" name="txtContent"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Images</label>
@@ -40,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label>Product Description</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3" name="product_description"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Product Status</label>
