@@ -56,7 +56,7 @@ class ProductController extends Controller
             'products' => $products,
             );
         // return view('interface.view_product')->with($data);
-        return view('admin.index_product')->with($data);
+        return view('admin.product_list')->with($data);
     }
 
     /**
@@ -71,7 +71,7 @@ class ProductController extends Controller
             'message' => $message,
             'user' => $this->user,
             );
-        return view('admin.add_product')->with($data);
+        return view('admin.product_add')->with($data);
     }
 
     /**
@@ -131,7 +131,7 @@ class ProductController extends Controller
             'product' => $product,
             'user' => $this->user,
             );
-        return view('admin.edit_product')->with($data);
+        return view('admin.product_edit')->with($data);
     }
 
     /**

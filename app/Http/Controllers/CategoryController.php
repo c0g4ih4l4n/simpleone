@@ -52,7 +52,7 @@ class CategoryController extends Controller
             'categories' => $categories
             );
 
-        return view('admin.index_category')->with($data);
+        return view('admin.cate_list')->with($data);
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     {
         $message = Session::get('message');
 
-        return view('admin.add_category', ['user' => $this->user, 'message' => $message]);
+        return view('admin.cate_add', ['user' => $this->user, 'message' => $message]);
     }
 
     /**
@@ -117,7 +117,7 @@ class CategoryController extends Controller
             'category' => $category
             );
 
-        return view('admin.edit_category')->with($data);
+        return view('admin.cate_edit')->with($data);
     }
 
     /**

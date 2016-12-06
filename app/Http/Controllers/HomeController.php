@@ -49,7 +49,7 @@ class HomeController extends Controller
             'categories' => $this->categories,
             'sort_categories' => $sort_categories
             );
-        return view('interface.home')->with($data);
+        return view('new_template.index')->with($data);
     }
 
     function compareInteger($a, $b) {

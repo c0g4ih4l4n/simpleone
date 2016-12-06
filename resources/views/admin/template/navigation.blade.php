@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Admin Control Panel</a>
+        <a class="navbar-brand" href="{{ URL::route('admin') }}">Admin Control Panel</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -51,16 +51,16 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="{{ URL::route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List Category</a>
+                            <a href="{{ URL::route('admin.categories.index') }}">List Category</a>
                         </li>
                         <li>
-                            <a href="#">Add Category</a>
+                            <a href="{{ URL::route('admin.categories.create') }}">Add Category</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -69,10 +69,10 @@
                     <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List Product</a>
+                            <a href="{{ URL::route('admin.products.index') }}">List Product</a>
                         </li>
                         <li>
-                            <a href="#">Add Product</a>
+                            <a href="{{ URL::route('admin.products.create') }}">Add Product</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -81,7 +81,7 @@
                     <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List User</a>
+                            <a href="{{ URL::route('admin.users.index') }}">List User</a>
                         </li>
                         <li>
                             <a href="#">Add User</a>

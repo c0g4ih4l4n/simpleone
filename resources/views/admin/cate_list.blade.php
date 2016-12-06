@@ -32,14 +32,6 @@
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
                         </tr>
-                        <tr class="even gradeC" align="center">
-                            <td>2</td>
-                            <td>Bóng Đá</td>
-                            <td>Thể Thao</td>
-                            <td>Ẩn</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

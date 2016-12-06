@@ -52,7 +52,7 @@ class UserController extends Controller
             'users_all' => $users_all,
             'user' => $this->user,
             );
-        return view('admin.index_user')->with($data);
+        return view('admin.user_list')->with($data);
     }
 
     /**
@@ -106,7 +106,7 @@ class UserController extends Controller
             'user' => $this->user,
             'user_target' => $user_target,
             );
-        return view('interface.edit_user')->with($data);
+        return view('interface.user_edit')->with($data);
     }
 
     /**
