@@ -75,11 +75,12 @@ Route::group(['middleware' => 'web'], function () {
 
 			Route::resource('comments', 'CommentController', ['except' => ['index', 'create', 'edit'], 
 				'names' => [
-				'show' => 'comments.show',
-				'store' => 'comments.store',
-				'update' => 'comments.update',
-				'destroy' => 'comments.destroy',
-			]]);
+					'show' => 'comments.show',
+					'store' => 'comments.store',
+					'update' => 'comments.update',
+					'destroy' => 'comments.destroy',
+				]
+			]);
 		});
 		
 	});
