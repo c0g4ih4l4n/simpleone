@@ -13,14 +13,14 @@
                 </ul>
             </div>
         </div>
-
         
         <div class="row" id="result-search">
         @foreach ($products as $product)
             <div class="col-md-3">
-                <div class="thumbnail"><img src="{!! URL::asset('assets/img/images.png') !!}">
+                <div class="thumbnail"><a href="{{ URL::route('products.show', $product->id) }}"><img src="{!! URL::route('get_photo', $product->photo ) !!}"></a>
                     <div class="caption">
-                        <h5>{{ $product->product_name }}</h5>
+                        <h5><a href="{{ URL::route('products.show', $product->id) }}">{{ $product->product_name }}</a></h5>
+                        <small>{!! $product->product_description !!}</small>
                     </div>
                 </div>
             </div>

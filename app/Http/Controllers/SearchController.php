@@ -30,6 +30,12 @@ class SearchController extends Controller
     	$keyword = Input::get('keyword', '');
 		$products = Product::SearchByKeyword($keyword)->get();
 
+        foreach ($products as $product) {
+            if ($product->photos->last() == null) 
+                $product->photo = null;
+            else $product->photo = $product->photos->last()->name;
+        }
+
 		$data = array (
 			'user' => $this->user,
 			'keyword' => $keyword,

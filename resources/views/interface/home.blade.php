@@ -15,33 +15,17 @@
         <div class="container site-section" id="welcome">
             <h1>Most Popular</h1>
             <div class="row">
+            @foreach ($products as $product)
                 <div class="col-md-4">
                     <div class="thumbnail popular-item">
-                        <img src="{!! URL::asset('assets/img/iPhone7-Pink.jpg') !!}">
+                        <a href="{{ URL::route('products.show', $product->id) }}"><img src="{!! URL::route('get_photo', $product->photo) !!}"></a>
                         <div class="caption">
-                            <h3>iPhone 7 Pink</h3>
-                            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <h3><a href="{{ URL::route('products.show', $product->id) }}">{{ $product->product_name }}</a></h3>
+                            <p>{{ $product->product_description }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="thumbnail popular-item">
-                        <img src="{!! URL::asset('assets/img/iPhone7.jpg') !!}">
-                        <div class="caption">
-                            <h3>iPhone 7</h3>
-                            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail popular-item">
-                        <img src="{!! URL::asset('assets/img/Samsung-32inch.jpg') !!}">
-                        <div class="caption">
-                            <h3>SamSung TV</h3>
-                            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
             </div>
             <a href="#" class="btn btn-primary btn-sm" type="button" id="learn-more-banner">More</a>
         </div>
