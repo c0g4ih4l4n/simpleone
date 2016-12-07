@@ -30,8 +30,12 @@ Route::group(['middleware' => 'web'], function () {
 		'middleware' => 'auth',
 		'uses' => 'VotingController@store',
 	]);
-	
-	Route::get('/categories', ['as' => 'listCategory', 'uses' => 'HomeController@listCategory']);
+
+	Route::group(['prefix' => 'categories'], function () {
+		Route::get('/{id?}', ['as' => 'listCategory', 'uses' => 'HomeController@listCategory']);
+	});
+
+	Route::get('add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
 
 	Route::get('/products', ['as' => 'listProduct', 'uses' => 'ProductController@listProduct']);
 	Route::resource('products', 'ProductController', ['only' => ['show']]);
@@ -39,6 +43,9 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('shoppingcarts', ['as' => 'shoppingcarts', 'uses' => 'CartController@list']);
 
 	Route::get('checkout', ['as' => 'checkout', 'uses' => 'CartController@checkOut']);
+	Route::get('pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
+
+	Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
 
 	Route::resource('users', 'UserController', ['only' => ['show', 'index', 'edit', 'update']]);
 
@@ -100,5 +107,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function ()
 
 // Categories
 Route::get('/test', function () {
+	Cart::add('293ad', 'Product 1', 1, 9.99);
 	return view('admin.user_add');
 });

@@ -41,64 +41,10 @@
                         <input type="text" class=""  value="">
                       </div>
                     </div>
-                    <div class="control-group">
-                      <label class="control-label" >Telephone<span class="red">*</span></label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Fax</label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Telephone<span class="red">*</span></label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Password<span class="red">*</span></label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Password Confirm<span class="red">*</span></label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
                   </div>
                   <div class="span4">
                     <div class="control-group">
-                      <label class="control-label" >Company</label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Company Id</label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Address 1<span class="red">*</span></label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >Address 2</label>
-                      <div class="controls">
-                        <input type="text" class=""  value="">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" >City<span class="red">*</span></label>
+                      <label class="control-label" >Address<span class="red">*</span></label>
                       <div class="controls">
                         <input type="text" class=""  value="">
                       </div>
@@ -121,7 +67,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="control-group">
+                    {{-- <div class="control-group">
                       <label class="control-label" >Region / State<span class="red">*</span></label>
                       <div class="controls">
                         <select >
@@ -132,99 +78,79 @@
                           <option>5</option>
                         </select>
                       </div>
-                    </div>
+                    </div> --}}
                   </div>
                 </fieldset>
               </form>
             </div>
-            <a class="btn btn-orange pull-right">Continue</a>
           </div>
+
+
           <div class="checkoutsteptitle">Step 2: Confirm Order<a class="modify">Modify</a>
           </div>
           <div class="checkoutstep">
-            <div class="cart-info">
-              <table class="table table-striped table-bordered">
-                <tr>
-                  <th class="image">Image</th>
-                  <th class="name">Product Name</th>
-                  <th class="model">Model</th>
-                  <th class="quantity">Quantity</th>
-                  <th class="price">Unit Price</th>
-                  <th class="total">Total</th>
-                </tr>
-                <tr>
-                  <td class="image"><a href="#"><img title="product" alt="product" src="img/prodcut-40x40.jpg" height="50" width="50"></a></td>
-                  <td  class="name"><a href="#">Jeans</a></td>
-                  <td class="model">My Product</td>
-                  <td class="quantity"><input type="text" size="1" value="1" name="quantity[40]" class="span1">
-                    &nbsp;
-                    <a href="#"><img class="tooltip-test" data-original-title="Update" src="img/update.png" alt=""></a>
-                    <a href="#"><img class="tooltip-test" data-original-title="Remove"  src="img/remove.png" alt=""></a></td>
-                  <td class="price">$120.68</td>
-                  <td class="total">$120.68</td>
-                </tr>
-                <tr>
-                  <td class="image"><a href="#"><img title="product" alt="product" src="img/prodcut-40x40.jpg" height="50" width="50"></a></td>
-                  <td   class="name"><a href="#">T-Shirt</a></td>
-                  <td class="model">My Product</td>
-                  <td class="quantity"><input type="text" size="1" value="1" name="quantity[40]" class="span1">
-                    &nbsp;
-                    <a href="#"><img class="tooltip-test" data-original-title="Update" src="img/update.png" alt=""></a>
-                    <a href="#"><img class="tooltip-test" data-original-title="Remove" src="img/remove.png" alt=""></a></td>
-                  <td class="price">$120.68</td>
-                  <td class="total">$120.68</td>
-                </tr>
-                <tr>
-                  <td class="image"><a href="#"><img title="product" alt="product" src="img/prodcut-40x40.jpg" height="50" width="50"></a></td>
-                  <td   class="name"><a href="#">Mobile</a></td>
-                  <td class="model">My Product</td>
-                  <td class="quantity"><input type="text" size="1" value="1" name="quantity[40]" class="span1">
-                    &nbsp;
-                    <a href="#"><img class="tooltip-test" data-original-title="Update" src="img/update.png" alt=""></a>
-                    <a href="#"><img class="tooltip-test" data-original-title="Remove" src="img/remove.png" alt=""></a></td>
-                  <td class="price">$130.00</td>
-                  <td class="total">$110.25</td>
-                </tr>
-                <tr>
-                  <td class="image"><a href="#"><img title="product" alt="product" src="img/prodcut-40x40.jpg" height="50" width="50"></a></td>
-                  <td   class="name"><a href="#">T-Shirt</a></td>
-                  <td class="model">product 11</td>
-                  <td class="quantity"><input type="text" size="1" value="1" name="quantity[40]" class="span1">
-                    &nbsp;
-                    <a href="#"><img class="tooltip-test" data-original-title="Update" src="img/update.png" alt=""></a>
+            <div class="container">  
+              <div class="cart-info">
+                <table class="table table-striped table-bordered">
+                  <tr>
+                    <th class="image">Image</th>
+                    <th class="name">Product Name</th>
+                    <th class="model">Model</th>
+                    <th class="quantity">Qty</th>
+                      <th class="total">Action</th>
+                    <th class="price">Unit Price</th>
+                    <th class="tax">Tax</th>
+                    <th class="total">Total</th>
+                   
+                  </tr>
+                  @foreach ($carts as $cartItem)
+                  <tr>
+                    <td class="image">
                     <a href="#">
-                      <img class="tooltip-test" data-original-title="Remove" src="img/remove.png" alt=""></a></td>
-                  <td class="price">$124.38</td>
-                  <td class="total">$120.46</td>
-                </tr>
-              </table>
-            </div>
-            <div class="row">
-              <div class="pull-right">
-                <div class="span4 pull-right">
-                  <table class="table table-striped table-bordered ">
-                    <tbody>
-                      <tr>
-                        <td><span class="extra bold">Sub-Total :</span></td>
-                        <td><span class="bold">$101.0</span></td>
-                      </tr>
-                      <tr>
-                        <td><span class="extra bold">Eco Tax (-2.00) :</span></td>
-                        <td><span class="bold">$11.0</span></td>
-                      </tr>
-                      <tr>
-                        <td><span class="extra bold">VAT (17.5%) :</span></td>
-                        <td><span class="bold">$21.0</span></td>
-                      </tr>
-                      <tr>
-                        <td><span class="extra bold totalamout">Total :</span></td>
-                        <td><span class="bold totalamout">$120.68</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                    @if ($cartItem->photo != null)
+                    <img class="media-object img-responsive" title="product" alt="product" src="{!! URL::route('get_photo', $cartItem->photo) !!}" height="50" width="50">
+                    @else 
+                    <img class="media-object img-responsive" title="product" alt="product" src="{{ URL::asset('web_assets/img/product1.jpg') }}" height="50" width="50">
+                    @endif
+                    </a></td>
+                    <td  class="name"><a href="#">{{ $cartItem->product_name}}</a></td>
+                    <td class="model">Purchased Product</td>
+                    <td class="quantity"><input type="text" size="1" value="{{ $cartItem->qty }}" name="quantity[40]" class="span1">
+                     </td>
+                     <td class="total"> <a href="{{ URL::route('shoppingcarts') }}"><img class="tooltip-test" data-original-title="Update" src="{{ URL::asset('web_assets/img/update.png') }}" alt=""></a>
+                      <a href="#"><img class="tooltip-test" data-original-title="Remove"  src="img/remove.png" alt=""></a></td>
+                   
+                     
+                    <td class="price">{{ $cartItem->price }}</td>
+                    <td class="tax">{{ $cartItem->tax }}</td>
+                    <td class="total">{{ $cartItem->total }}</td>
+                     
+                  </tr>
+                  @endforeach
+                </table>
               </div>
-            </div>
+              <div class="container">
+                <div class="pull-right">
+                    <div class="span4 pull-right">
+                      <table class="table table-striped table-bordered ">
+                        <tr>
+                          <td><span class="extra bold">Sub-Total :</span></td>
+                          <td><span class="bold">{{ Cart::subTotal() }}</span></td>
+                        </tr>
+                        <tr>
+                          <td><span class="extra bold">Tax :</span></td>
+                          <td><span class="bold">{{ Cart::tax() }}</span></td>
+                        </tr>
+                        <tr>
+                          <td><span class="extra bold totalamout">Total :</span></td>
+                          <td><span class="bold totalamout">{{ Cart::total() }}</span></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+            <a href="{{ URL::route('pay') }}" class="btn btn-orange pull-right">Checkout</a>
           </div>
         </div>
         <!-- Sidebar Start-->

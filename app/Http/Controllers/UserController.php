@@ -106,7 +106,7 @@ class UserController extends Controller
             'user' => $this->user,
             'user_target' => $user_target,
             );
-        return view('interface.user_edit')->with($data);
+        return view('admin.user_edit')->with($data);
     }
 
     /**

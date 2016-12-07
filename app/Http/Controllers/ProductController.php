@@ -119,7 +119,7 @@ class ProductController extends Controller
             'reviews' => $reviews,
             'comments' => $comments,
             );
-        return view('interface.product_detail')->with($data);
+        return view('newTemplate.product')->with($data);
     }
 
     /**

@@ -1,0 +1,31 @@
+#search-form{
+  margin-left:60px;
+  margin-bottom:20px;
+}
+
+#search-field{
+  width:40%;
+  display:inline-block;
+}
+
+@media (max-width:991px) {
+  #search-form{
+    margin-left:25px;
+    margin-bottom:10px;
+  }
+}
+@media (max-width:767px) {
+  #search-form{
+    margin-bottom:0;
+  }
+}
+#search-dropdown{
+  float:left;
+}
+
+.search-info h3{
+  display:inline-block;
+}
+#result-search{
+  margin-top:30px;
+}

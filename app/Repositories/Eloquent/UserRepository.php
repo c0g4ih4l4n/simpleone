@@ -27,7 +27,7 @@ class UserRepository extends AbstractRepository
 	{
         $userEdit = $this->model->findOrFail($id);
 
-        $userEdit->name = $request->user_name;
+        $userEdit->name = $request->name;
 
         if ($request->hasFile('photo'))
         {

@@ -27,12 +27,26 @@ class HomeController extends Controller
     
     private $user;
     private $categories;
+    private $products;
     public function __construct()
     {        
         if (Auth::check()) {
             $this->user = Auth::user();
         }
         $this->categories = Category::all();
+        $this->products = Product::all();
+
+        foreach ($this->categories as $category) {
+            if ($category->photos->last() == null) 
+                $category->photo = null;
+            else $category->photo = $category->photos->last()->name;
+        }
+
+        foreach ($this->products as $product) {
+            if ($product->photos->last() == null) 
+                $product->photo = null;
+            else $product->photo = $product->photos->last()->name;
+        }
     }
 
     /**
@@ -44,22 +58,66 @@ class HomeController extends Controller
     {
         $sort_categories = $this->categories->toArray();
         usort($sort_categories, array ($this, 'compareInteger'));
+
         $data = array (
             'user' => $this->user,
             'categories' => $this->categories,
-            'sort_categories' => $sort_categories
+            'sort_categories' => $sort_categories,
+            'products' => $this->products
             );
+        
         return view('newTemplate.index')->with($data);
     }
 
     public function listCategory()
     {
-    return view('newTemplate.category');
+        $sort_categories = $this->categories->toArray();
+
+        if (func_num_args() != 0)
+        {
+            $id = func_get_arg(0);
+            $products = Product::where('category_id', '=', $id)->get();
+
+            foreach ($products as $product) {
+                if ($product->photos->last() == null) 
+                    $product->photo = null;
+                else $product->photo = $product->photos->last()->name;
+            }
+        }
+
+        usort($sort_categories, array ($this, 'compareInteger'));
+
+        $data = array (
+            'user' => $this->user,
+            'categories' => $this->categories,
+            'sort_categories' => $sort_categories,
+            );
+        if (isset($products)) {
+            $data['products'] = $products;
+        } else {
+            $data['products'] = $this->products;       
+        }
+
+        return view('newTemplate.category')->with($data);
     }
 
     function compareInteger($a, $b) {
         if ($a['order_number'] == $b['order_number']) 
             return 0;
         return ($a['order_number'] < $b['order_number']) ? -1 : 1;
+    }
+
+    /**
+     * Display Contact Form
+     * @return [type] [description]
+     */
+    public function contact()
+    {
+        $data = array (
+            'user' => $this->user,
+            'categories' => $this->categories,
+            'products' => $this->products
+            );
+        return view('newTemplate.contact');
     }
 }

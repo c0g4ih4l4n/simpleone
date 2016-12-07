@@ -13,7 +13,8 @@
                 </div>
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-7" style="padding-bottom:120px">
-                    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.products.update', $product->id) }}">
+                    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.products.update', $product->id) }}" enctype="multipart/form-data">
+                        {{ method_field('PUT') }}
                         {{ csrf_field() }}
                         @if (isset($message))
                             <div class="alert alert-success">
@@ -62,11 +63,11 @@
                         <div class="form-group"></div>
                         <div class="form-group">
                             <label class="control-label" for="product_image">Product Image</label>
-                            <input type="file" name="product_image">
+                            <input type="file" name="photo">
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-default" type="submit">Add</button>
+                                <button class="btn btn-default" type="submit">Update</button>
                                 <button class="btn btn-default" type="reset">Reset</button>
                             </div>
                         </div>

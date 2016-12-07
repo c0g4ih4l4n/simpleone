@@ -52,6 +52,8 @@ class CategoryController extends Controller
             'categories' => $categories
             );
 
+        
+
         return view('admin.cate_list')->with($data);
     }
 

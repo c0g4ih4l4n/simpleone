@@ -11,45 +11,45 @@
         <div class="span5">
           <ul class="thumbnails mainimage">
             <li class="span5">
-              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product1big.jpg">
-                <img src="img/product1big.jpg" alt="" title="">
+              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="{{ URL::asset('web_assets/img/product1big.jpg') }}">
+                <img src="{{ URL::asset('web_assets/img/product1big.jpg') }}" alt="" title="">
               </a>
             </li>
             <li class="span5">
               <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product2big.jpg">
-                <img  src="img/product2big.jpg" alt="" title="">
+                <img  src="{{ URL::asset('web_assets/img/product2big.jpg') }}" alt="" title="">
               </a>
             </li>
             <li class="span5">
               <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product1big.jpg">
-                <img src="img/product1big.jpg" alt="" title="">
+                <img src="{{ URL::asset('web_assets/img/product1big.jpg') }}" alt="" title="">
               </a>
             </li>
             <li class="span5">
               <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product2big.jpg">
-                <img  src="img/product2big.jpg" alt="" title="">
+                <img  src="{{ URL::asset('web_assets/img/product2big.jpg') }}" alt="" title="">
               </a>
             </li>
           </ul>
           <ul class="thumbnails mainimage">
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="img/product1.jpg" alt="" title="">
+                <img  src="{{ URL::asset('web_assets/img/product1.jpg" a') }}lt="" title="">
               </a>
             </li>
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="img/product2.jpg" alt="" title="">
+                <img  src="{{ URL::asset('web_assets/img/product2.jpg" a') }}lt="" title="">
               </a>
             </li>
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="img/product1.jpg" alt="" title="">
+                <img  src="{{ URL::asset('web_assets/img/product1.jpg" a') }}lt="" title="">
               </a>
             </li>
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="img/product2.jpg" alt="" title="">
+                <img  src="{{ URL::asset('web_assets/img/product2.jpg" a') }}lt="" title="">
               </a>
             </li>
           </ul>

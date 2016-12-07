@@ -18,36 +18,30 @@
                             <th>ID</th>
                             <th>Username</th>
                             <th>Level</th>
-                            <th>Status</th>
-                            <th>Delete</th>
+                            <th>Balance</th>
+                            <th>Email</th>
                             <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($users_all as $user)
                         <tr class="odd gradeX" align="center">
-                            <td>1</td>
-                            <td>quoctuan</td>
-                            <td>Superadmin</td>
-                            <td>Hiện</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->user_level }}</td>
+                            <td>{{ $user->user_balance }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td><i class="fa fa-pencil fa-fw"></i><a href="{!! URL::route('admin.users.edit', $user->id) !!}">Edit </a></td>
+                            <td>
+                            <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                <button type='submit' class="btn btn-link"><i class="fa fa-trash-o  fa-fw"></i>Delete</button>
+                            </form>
                         </tr>
-                        <tr class="even gradeC" align="center">
-                            <td>2</td>
-                            <td>kutun</td>
-                            <td>Admin</td>
-                            <td>Ẩn</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                        </tr>
-                        <tr class="odd gradeX" align="center">
-                            <td>3</td>
-                            <td>kuteo</td>
-                            <td>Member</td>
-                            <td>Hiện</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

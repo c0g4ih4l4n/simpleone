@@ -26,7 +26,7 @@
               <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
               <br>
               <br>
-              <a href="#" class="btn btn-orange">Continue</a>
+              <a href="{{ URL::to('register') }}" class="btn btn-orange">Continue</a>
             </div>
           </section>
           <section class="returncustomer">

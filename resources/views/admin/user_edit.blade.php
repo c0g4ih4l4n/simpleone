@@ -13,35 +13,33 @@
                 </div>
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-7" style="padding-bottom:120px">
-                    <form action="" method="POST">
+                    <form action="{{ URL::route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                        {{ method_field('PUT')}}
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label>Username</label>
-                            <input class="form-control" name="txtUser" value="quoctuan" disabled />
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="txtPass" placeholder="Please Enter Password" />
-                        </div>
-                        <div class="form-group">
-                            <label>RePassword</label>
-                            <input type="password" class="form-control" name="txtRePass" placeholder="Please Enter RePassword" />
+                            <input class="form-control" name="name" placeholder="Please Enter Username" value="{{ $user->name }}" />
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" name="txtEmail" placeholder="Please Enter Email" />
+                            <input type="email" class="form-control" name="email" placeholder="Please Enter Email" value="{{ $user->email }}" />
                         </div>
                         <div class="form-group">
                             <label>User Level</label>
-                            <label class="radio-inline">
-                                <input name="rdoLevel" value="1" checked="" type="radio">Admin
-                            </label>
-                            <label class="radio-inline">
-                                <input name="rdoLevel" value="2" type="radio">Member
-                            </label>
+                            <input name="user_level" class="form-control" type="text" value="{{ $user->user_level }}" >
                         </div>
-                        <button type="submit" class="btn btn-default">User Edit</button>
+                        <div class="form-group">
+                            <label>User Balance</label>
+                            <input name="user_balance" class="form-control" type="text" value="{{ $user->user_balance }}" >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="photo">Avatar</label>
+                            <input type="file" name="photo" id="file-input">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-default">Update</button>
                         <button type="reset" class="btn btn-default">Reset</button>
-                    <form>
+                    </form>
                 </div>
             </div>
             <!-- /.row -->

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>SimpleOne - A Responsive Html5 Ecommerce Template</title>
+<title>{{ isset($title) ? $title : 'Home Page' }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -14,6 +14,8 @@
 <link href="{{ URL::asset('web_assets/css/flexslider.css" type="text/css') }}" media="screen" rel="stylesheet"  />
 <link href="{{ URL::asset('web_assets/css/jquery.fancybox.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('web_assets/css/cloud-zoom.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/css/form-search.css') }}" rel="stylesheet">
+{{-- <link rel="stylesheet" href="{!! asset('assets/bootstrap/css/bootstrap.min.css') !!}"> --}}
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -128,7 +130,7 @@
           </li>
           <li><a href="features.html">Features</a>
           </li>
-          <li><a href="contact.html">Contact</a>
+          <li><a href="{{ URL::route('contact') }}">Contact</a>
           </li>         
         </ul>
       </nav>
