@@ -9,11 +9,10 @@
       <ul class="breadcrumb">
         <li>
           <a href="#">Home</a>
-          <span class="divider">/</span>
         </li>
-        <li class="active"> Shopping Cart</li>
+        <li class="active">Shopping Cart</li>
       </ul>       
-      <h1 class="heading1"><span class="maintext"> Shopping Cart</span><span class="subtext"> All items in your  Shopping Cart</span></h1>
+      <h4 class="heading1"><span class="maintext"> Shopping Cart</span><span class="subtext"> All items in your  Shopping Cart</span></h4>
       <!-- Cart-->
       <div class="cart-info">
         <table class="table table-striped table-bordered">
@@ -26,8 +25,8 @@
             <th class="price">Unit Price</th>
             <th class="tax">Tax</th>
             <th class="total">Total</th>
-           
           </tr>
+
           @foreach ($carts as $cartItem)
           <tr>
             <td class="image">
@@ -42,7 +41,7 @@
             <td class="model">Purchased Product</td>
             <td class="quantity"><input type="text" size="1" value="{{ $cartItem->qty }}" name="quantity[40]" class="span1">
              </td>
-             <td class="total"> <a href="{{ URL::route('shoppingcarts') }}"><img class="tooltip-test" data-original-title="Update" src="{{ URL::asset('web_assets/img/update.png') }}" alt=""></a>
+             <td class="total"> <a href="{{ URL::route('shoppingcart') }}"><img class="tooltip-test" data-original-title="Update" src="{{ URL::asset('web_assets/img/update.png') }}" alt=""></a>
               <a href="#"><img class="tooltip-test" data-original-title="Remove"  src="img/remove.png" alt=""></a></td>
            
              
@@ -54,27 +53,28 @@
           @endforeach
         </table>
       </div>
+      
       <div class="container">
-      <div class="pull-right">
-          <div class="span4 pull-right">
-            <table class="table table-striped table-bordered ">
-              <tr>
-                <td><span class="extra bold">Sub-Total :</span></td>
-                <td><span class="bold">{{ Cart::subTotal() }}</span></td>
-              </tr>
-              <tr>
-                <td><span class="extra bold">Tax :</span></td>
-                <td><span class="bold">{{ Cart::tax() }}</span></td>
-              </tr>
-              <tr>
-                <td><span class="extra bold totalamout">Total :</span></td>
-                <td><span class="bold totalamout">{{ Cart::total() }}</span></td>
-              </tr>
-            </table>
-            <a href="{{ URL::route('checkout') }}" type="submit" value="CheckOut" class="btn btn-orange pull-right">CheckOut</a>
-            <a href="{{ URL::route('listCategory') }}"><input type="submit" value="Continue Shopping" class="btn btn-orange pull-right mr10"></a>
+        <div class="pull-right">
+            <div class="span4 pull-right">
+              <table class="table table-striped table-bordered ">
+                <tr>
+                  <td><span class="extra bold">Sub-Total :</span></td>
+                  <td><span class="bold">{{ Cart::subTotal() }}</span></td>
+                </tr>
+                <tr>
+                  <td><span class="extra bold">Tax :</span></td>
+                  <td><span class="bold">{{ Cart::tax() }}</span></td>
+                </tr>
+                <tr>
+                  <td><span class="extra bold totalamout">Total :</span></td>
+                  <td><span class="bold totalamout">{{ Cart::total() }}</span></td>
+                </tr>
+              </table>
+              <a href="{{ URL::route('checkout') }}" type="submit" value="CheckOut" class="btn btn-orange pull-right">CheckOut</a>
+              <a href="{{ URL::route('home') }}"><input type="submit" value="Continue Shopping" class="btn btn-orange pull-right mr10"></a>
+            </div>
           </div>
-        </div>
         </div>
     </div>
   </section>

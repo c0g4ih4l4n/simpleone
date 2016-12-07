@@ -23,7 +23,7 @@
                 {{-- Supplier --}}
 
                 <h3>${!! $product['price'] !!} </h3>
-                <button class="btn btn-primary" type="button">Add to cart</button>
+                <a href="{{ URL::route('cart_add', $product->id) }}" class="btn btn-primary" type="button">Add to cart</a>
                 <form class="vote_form vote_product" action="{{ URL::route('vote') }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="vote_id" value="{!! $product->id !!}">

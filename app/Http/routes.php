@@ -21,6 +21,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@list']);
 
+	Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CartController@checkout']);
+
+	Route::get('/add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
+
 	Route::get('/profile', [
 		'as' => 'profile', 
 		'middleware' => 'auth', 
