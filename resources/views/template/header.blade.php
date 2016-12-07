@@ -38,7 +38,7 @@
                     <li class="active" role="presentation"><a href="{!! URL::route('admin') !!}">Admin CP</a></li>
                     <li class="active" role="presentation"><a href="{!! URL::to('logout') !!}">Log Out</a></li>
                 @endif
-                    <li class="active" role="presentation"><a href="#">Cart </a></li>
+                    <li class="active" role="presentation"><a href="{{ URL::route('shoppingcart') }}">Cart </a></li>
                     <li class="active" role="presentation"><a href="#">Help </a></li>
                 </ul>
             </div>

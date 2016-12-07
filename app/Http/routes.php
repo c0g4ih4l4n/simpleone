@@ -19,6 +19,8 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/search/{search?}', ['as' => 'search', 'uses' => 'SearchController@search']);
 
+	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@list']);
+
 	Route::get('/profile', [
 		'as' => 'profile', 
 		'middleware' => 'auth', 
