@@ -512,3 +512,15 @@ div#tag.row{
 /*
 End Voting
  */
+
+/*
+* Add Checkout CSS
+ */
+.controls {
+  display: inline-block;
+}
+.checkoutsteptitle {
+  margin: 30px 0px 10px 0px;
+}
+
+

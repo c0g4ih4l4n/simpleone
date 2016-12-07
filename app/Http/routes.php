@@ -23,6 +23,8 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CartController@checkout']);
 
+	Route::get('/pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
+
 	Route::get('/add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
 
 	Route::get('/profile', [
