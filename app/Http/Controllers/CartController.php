@@ -75,7 +75,7 @@ class CartController extends Controller
             'user' => $this->user
             );
 
-        return view('newTemplate.checkout')->with($data);
+        return view('interface.checkout')->with($data);
     }
 
     /**
