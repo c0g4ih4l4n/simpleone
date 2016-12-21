@@ -79,5 +79,6 @@
 <script type="text/javascript"  src="{{ URL::asset('web_assets/js/jquery.touchSwipe.min.js') }}"></script>
 <script type="text/javascript"  src="{{ URL::asset('web_assets/js/jquery.ba-throttle-debounce.min.js') }}"></script>
 <script defer src="{{ URL::asset('web_assets/js/custom.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/cart.js') }}"></script>
 </body>
 </html>

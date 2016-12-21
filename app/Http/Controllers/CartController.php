@@ -158,9 +158,21 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $rowId, $quantity)
     {
-        //
+        Cart::update($rowId, $quantity);
+        return Redirect::route('shoppingcart');
+    }
+
+    /**
+     * Remove CartItem
+     * @param  int $id id of removed item
+     * @return 
+     */
+    public function remove($rowId) 
+    {
+        Cart::remove($rowId);
+        return Redirect::route('shoppingcart');
     }
 
     /**

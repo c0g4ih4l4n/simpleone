@@ -17,16 +17,30 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
+	// search
 	Route::get('/search/{search?}', ['as' => 'search', 'uses' => 'SearchController@search']);
 
-	Route::get('/shoppingcart', ['as' => 'shoppingcarts', 'uses' => 'CartController@list']);
 
-	Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CartController@checkout']);
+	// Cart
+	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@list']);
 
-	Route::get('/pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
-
+	// add item
 	Route::get('/add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
 
+	// remove item
+	Route::get('/remove-cart/{row_id}', ['as' => 'cart_remove', 'uses' => 'CartController@remove']);
+
+	// update item
+	Route::get('/update-cart/{product_id}/{quantity}', ['as' => 'cart_update', 'uses' => 'CartController@update']);
+
+	// checkout
+	Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CartController@checkout']);
+
+	// pay
+	Route::get('/pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
+
+
+	// profile
 	Route::get('/profile', [
 		'as' => 'profile', 
 		'middleware' => 'auth', 

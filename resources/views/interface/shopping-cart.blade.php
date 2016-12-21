@@ -16,6 +16,8 @@
       <!-- Cart-->
       <div class="cart-info">
         <table class="table table-striped table-bordered">
+
+          {{-- Cart Head --}}
           <tr>
             <th class="image">Image</th>
             <th class="name">Product Name</th>
@@ -27,22 +29,30 @@
             <th class="total">Total</th>
           </tr>
 
+          {{-- Cart Information --}}
           @foreach ($carts as $cartItem)
           <tr>
+
             <td class="image">
-            <a href="#">
+            <a href="{{ URL::route('products::', $cartItem->id) }}">
             @if ($cartItem->photo != null)
             <img class="media-object img-responsive" title="product" alt="product" src="{!! URL::route('get_photo', $cartItem->photo) !!}" height="50" width="50">
             @else 
             <img class="media-object img-responsive" title="product" alt="product" src="{{ URL::asset('web_assets/img/product1.jpg') }}" height="50" width="50">
             @endif
             </a></td>
-            <td  class="name"><a href="#">{{ $cartItem->product_name}}</a></td>
+
+
+            <td  class="name"><a href="{{ URL::route('products::', $cartItem->rowId)}}">{{ $cartItem->product_name }}</a></td>
             <td class="model">Purchased Product</td>
             <td class="quantity"><input type="text" size="1" value="{{ $cartItem->qty }}" name="quantity[40]" class="span1">
              </td>
-             <td class="total"> <a href="{{ URL::route('shoppingcart') }}"><img class="tooltip-test" data-original-title="Update" src="{{ URL::asset('web_assets/img/update.png') }}" alt=""></a>
-              <a href="#"><img class="tooltip-test" data-original-title="Remove"  src="img/remove.png" alt=""></a></td>
+
+            {{-- Action Update or remove --}}
+             <td class="total"> 
+
+              <a href="{{ URL::route('cart_remove', $cartItem->rowId) }}"><img class="tooltip-test" data-original-title="Update" src="{{ URL::asset('web_assets/img/update.png') }}" alt=""></a>
+              <a href="{{ URL::route('cart_update', $cartItem->rowId) }}"><img class="tooltip-test" data-original-title="Remove" src="img/remove.png" alt=""></a></td>
            
              
             <td class="price">{{ $cartItem->price }}</td>

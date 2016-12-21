@@ -23,6 +23,8 @@
     <![endif]-->
 <!-- fav -->
 <link rel="shortcut icon" href="{{ URL::asset('web_assets/assets/ico/favicon.html') }}">
+
+<link rel="stylesheet" href="{{ URL::asset('css/cart.css') }}">
 </head>
 <body>
 <!-- Header Start -->
@@ -61,7 +63,7 @@
                     <li class="active" role="presentation"><a href="{!! URL::route('admin') !!}">Admin CP</a></li>
                     <li class="active" role="presentation"><a href="{!! URL::to('logout') !!}">Log Out</a></li>
                 @endif
-                  <li><a class="shoppingcart" href="{{ URL::route('shoppingcarts') }}">Shopping Cart</a>
+                  <li><a class="shoppingcart" href="{{ URL::route('shoppingcart') }}">Shopping Cart</a>
                   </li>
                   <li><a class="checkout" href="{{ URL::route('checkout') }}">CheckOut</a>
                   </li>
@@ -109,7 +111,7 @@
           </li>
           <li><a  href="{{ URL::route('listCategory') }}">Categories</a>
           </li>
-          <li><a href="{{ URL::route('shoppingcarts') }}">Shopping Cart</a>
+          <li><a href="{{ URL::route('shoppingcart') }}">Shopping Cart</a>
           </li>
           <li><a href="{{ URL::route('checkout') }}">Checkout</a>
           </li>
