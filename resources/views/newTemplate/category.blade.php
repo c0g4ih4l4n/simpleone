@@ -5,6 +5,8 @@
 <div id="maincontainer">
   <section id="product">
     <div class="container">
+
+
      <!--  breadcrumb -->  
       <ul class="breadcrumb">
         <li>
@@ -14,8 +16,12 @@
         <li class="active">Category</li>
       </ul>
       <div class="row">        
+
+
         <!-- Sidebar Start-->
         <aside class="span3">
+
+
          <!-- Category-->  
           <div class="sidewidt">
             <h2 class="heading2"><span>Categories</span></h2>
@@ -27,6 +33,8 @@
             @endforeach
             </ul>
           </div>
+
+
          <!--  Best Seller -->  
           <div class="sidewidt">
             <h2 class="heading2"><span>Best Seller</span></h2>
@@ -51,6 +59,8 @@
               </li>
             </ul>
           </div>
+
+
           <!-- Latest Product -->  
           <div class="sidewidt">
             <h2 class="heading2"><span>Latest Products</span></h2>
@@ -75,6 +85,9 @@
               </li>
             </ul>
           </div>
+
+
+
           <!--  Must have -->  
           <div class="sidewidt">
           <h2 class="heading2"><span>Must have</span></h2>
@@ -91,38 +104,53 @@
           </div>
         </aside>
         <!-- Sidebar End-->
+
+
         <!-- Category-->
         <div class="span9">          
+
+
           <!-- Category Products-->
           <section id="category">
             <div class="row">
               <div class="span9">
+
+              
                <!-- Category-->
                 <section id="categorygrid">
                 
                   <ul class="thumbnails grid">
+
                   @foreach ($products as $product)
                     <li class="span3">
-                      <a class="prdocutname" href="product.html">{{ $product->product_name }}</a>
+
+                      <a class="prdocutname" href="{{ URL::route('products::', $product->id) }}">{{ $product->product_name }}</a>
+
                       <div class="thumbnail">
                         <span class="sale tooltip-test">Sale</span>
-                        <a href="#">
+
+                        <a href="{{ URL::route('products::', $product->id) }}">
                         @if ($product->photo != null)
                         <img class="media-object img-responsive" src="{!! URL::route('get_photo', $product->photo) !!}">
                         @else 
                         <img class="media-object img-responsive" src="{{ URL::asset('web_assets/img/product1.jpg') }}">
                         @endif
                         </a>
+
                         <div class="pricetag">
                           <span class="spiral"></span><a href="{!! URL::route('cart_add', $product->id) !!}" class="productcart">ADD TO CART</a>
                           <div class="price">
-                            <div class="pricenew">$4459.00</div>
-                            <div class="priceold">$5000.00</div>
+                            <div class="pricenew">${{ $product->price }}</div>
+                            <div class="priceold">${{ $product->price }}</div>
                           </div>
                         </div>
+
                       </div>
                     </li>
                   @endforeach
+
+
+
                     <li class="span3">
                       <a class="prdocutname" href="product.html">Product Name Here</a>
                       <div class="thumbnail">
@@ -150,6 +178,9 @@
                         </div>
                       </div>
                     </li>
+
+
+
                   </ul>
                   <div class="pagination pull-right">
                     <ul>
@@ -168,10 +199,15 @@
                       </li>
                     </ul>
                   </div>
+
+
                 </section>
+
               </div>
+
             </div>
           </section>
+
         </div>
       </div>
     </div>
