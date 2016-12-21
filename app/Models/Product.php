@@ -14,7 +14,11 @@ use App\Http\Traits\Votingable as VoteTrait;
 use App\Models\Vote;
 use App\Models\Supplier;
 
-class Product extends Model implements Votingable
+use McCool\LaravelAutoPresenter\HasPresenter;
+
+use App\Presenters\ProductPresenter;
+
+class Product extends Model implements Votingable, HasPresenter
 {
 
     use VoteTrait;
@@ -27,6 +31,11 @@ class Product extends Model implements Votingable
     public function __construct()
     {
 
+    }
+
+    public function getPresenterClass()
+    {
+        return ProductPresenter::class;
     }
 
     public static function withRequest(Request $request)

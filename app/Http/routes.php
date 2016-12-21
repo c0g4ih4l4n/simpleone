@@ -19,7 +19,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/search/{search?}', ['as' => 'search', 'uses' => 'SearchController@search']);
 
-	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@list']);
+	Route::get('/shoppingcart', ['as' => 'shoppingcarts', 'uses' => 'CartController@list']);
 
 	Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CartController@checkout']);
 
@@ -46,12 +46,6 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
 
 	Route::get('/products', ['as' => 'listProduct', 'uses' => 'ProductController@listProduct']);
-	Route::resource('products', 'ProductController', ['only' => ['show']]);
-
-	Route::get('shoppingcarts', ['as' => 'shoppingcarts', 'uses' => 'CartController@list']);
-
-	Route::get('checkout', ['as' => 'checkout', 'uses' => 'CartController@checkOut']);
-	Route::get('pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
 
 	Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
 
