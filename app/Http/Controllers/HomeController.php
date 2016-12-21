@@ -79,7 +79,8 @@ class HomeController extends Controller
             $id = func_get_arg(0);
             $products = Product::where('category_id', '=', $id)->get();
 
-            foreach ($products as $product) {
+            foreach ($products as $product) 
+            {
                 if ($product->photos->last() == null) 
                     $product->photo = null;
                 else $product->photo = $product->photos->last()->name;

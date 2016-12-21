@@ -99,6 +99,7 @@
               <div class="span9">
                <!-- Category-->
                 <section id="categorygrid">
+                
                   <ul class="thumbnails grid">
                   @foreach ($products as $product)
                     <li class="span3">

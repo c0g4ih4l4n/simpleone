@@ -102,13 +102,18 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = $this->productRepository->getById($id);
+
         $comments = $product->comments;
-        foreach ($comments as $comment) {
+
+        foreach ($comments as $comment) 
+        {
             $comment->user_name = $comment->user->name;
         }
 
         $reviews = Review::where('product_id', '=', $id)->get();
-        foreach ($reviews as $review) {
+
+        foreach ($reviews as $review) 
+        {
             $review->user_name = $review->user->name;
         }
         
@@ -119,6 +124,7 @@ class ProductController extends Controller
             'reviews' => $reviews,
             'comments' => $comments,
             );
+        
         return view('newTemplate.product')->with($data);
     }
 

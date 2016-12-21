@@ -21,4 +21,11 @@ class ProductPresenter extends BasePresenter
     {
 		return $this->wrappedObject->item->price;
     }
+
+    public function photo() {
+        if ($this->wrappedObject->photos->last() == null) 
+            $this->wrappedObject->photo = null;
+        else $this->wrappedObject->photo = $this->wrappedObject->photos->last()->name;
+        return $this->wrappedObject->photo;
+    }
 }

@@ -27,16 +27,26 @@
 <body>
 <!-- Header Start -->
 <header>
+
   <div class="headerstrip">
+
     <div class="container">
+
       <div class="row">
+
         <div class="span12">
+
           <a href="{{ URL::route('home') }}" class="logo pull-left"><img src="{{ URL::asset('web_assets/img/logo.png') }}" alt="SimpleOne" title="SimpleOne"></a>
+
           <!-- Top Nav Start -->
           <div class="pull-left">
+
             <div class="navbar" id="topnav">
+
               <div class="navbar-inner">
+
                 <ul class="nav" >
+                  
                   <li><a class="home active" href="{{ URL::route('home') }}">Home</a>
                   </li>
 
@@ -56,6 +66,7 @@
                   <li><a class="checkout" href="{{ URL::route('checkout') }}">CheckOut</a>
                   </li>
                 </ul>
+
               </div>
             </div>
           </div>
@@ -71,7 +82,7 @@
         <ul class="nav-pills categorymenu">
           <li><a class="active"  href="{{ URL::route('home') }}">Home</a>
           </li>
-          <li><a href="{{ URL::route('listProduct') }}">Products</a>
+          <li><a href="#">Products</a>
             <div>
               <ul>
                 <li><a href="#"> Women's Accessories</a>
