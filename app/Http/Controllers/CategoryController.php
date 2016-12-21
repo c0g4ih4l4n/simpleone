@@ -52,8 +52,6 @@ class CategoryController extends Controller
             'categories' => $categories
             );
 
-        
-
         return view('admin.cate_list')->with($data);
     }
 
@@ -66,7 +64,13 @@ class CategoryController extends Controller
     {
         $message = Session::get('message');
 
-        return view('admin.cate_add', ['user' => $this->user, 'message' => $message]);
+        $data = array (
+            'message' => $message,
+            'user' => $this->user,
+            'categories' => $this->categoryRepository->listAll()
+            );
+
+        return view('admin.cate_add')->with($data);
     }
 
     /**

@@ -18,6 +18,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Category Parent</th>
+                            <th>Order Number</th>
                             <th>Status</th>
                             <th>Delete</th>
                             <th>Edit</th>
@@ -28,15 +29,22 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->category_name }}</td>
-                            <td>None</td>
+                            <td>
+                            @if ($category->parent_id != 0) 
+                                {{ $category->parent }}
+                            @else 
+                                None
+                            @endif
+                            </td>
+                            <td>{{ $category->order_number }}</td>
                             <td>Hiện</td>
 
-                            <td><i class="fa fa-pencil fa-fw"></i><a href="{!! URL::route('admin.categories.edit', $category['id']) !!}">Edit </a></td>
+                            <td><i class="fa fa-pencil fa-fw"></i><a href="{!! URL::route('admin.categories.edit', $category->id) !!}">Edit </a></td>
                             <td>
-                            <form method="POST" action="{{ route('admin.categories.destroy', $category['id']) }}">
+                            <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="id" value="{{ $category['id'] }}">
+                                <input type="hidden" name="id" value="{{ $category->id }}">
                                 <button type='submit' class="btn btn-link"><i class="fa fa-trash-o  fa-fw"></i>Delete</button>
                             </form>
                         </tr>

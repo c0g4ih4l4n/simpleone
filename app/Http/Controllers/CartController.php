@@ -76,9 +76,7 @@ class CartController extends Controller
             'user' => $this->user
             );
 
-
         return view('newTemplate.checkout')->with($data);
-
     }
 
     /**
@@ -115,7 +113,7 @@ class CartController extends Controller
 
         Cart::add($product_id, $product->product_name, 1, $product->item->price);
 
-        return Redirect::back();
+        return Redirect::route('shoppingcart');
     }
 
     /**
@@ -161,7 +159,7 @@ class CartController extends Controller
     public function update(Request $request, $rowId, $quantity)
     {
         Cart::update($rowId, $quantity);
-        return Redirect::route('shoppingcart');
+        return Redirect::back();
     }
 
     /**
@@ -172,7 +170,7 @@ class CartController extends Controller
     public function remove($rowId) 
     {
         Cart::remove($rowId);
-        return Redirect::route('shoppingcart');
+        return Redirect::back();
     }
 
     /**

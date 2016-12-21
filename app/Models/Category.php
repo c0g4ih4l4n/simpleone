@@ -4,7 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+use McCool\LaravelAutoPresenter\HasPresenter;
+
+use App\Presenters\CategoryPresenter;
+
+class Category extends Model implements HasPresenter
 {
     protected $table = "categories";
 
@@ -15,5 +19,10 @@ class Category extends Model
     public function photos()
     {
     	return $this->morphMany('App\Models\Photo', 'photo');
+    }
+
+    public function getPresenterClass()
+    {
+        return CategoryPresenter::class;
     }
 }
