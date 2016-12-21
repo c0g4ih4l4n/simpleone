@@ -11,7 +11,7 @@
 <link href="{{ URL::asset('web_assets/css/bootstrap.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('web_assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('web_assets/css/style.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('web_assets/css/flexslider.css" type="text/css') }}" media="screen" rel="stylesheet"  />
+<link href="{{ URL::asset('css/flexslider.css') }}" type="text/css" media="screen" rel="stylesheet"  />
 <link href="{{ URL::asset('web_assets/css/jquery.fancybox.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('web_assets/css/cloud-zoom.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/form-search.css') }}" rel="stylesheet">
@@ -22,7 +22,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 <!-- fav -->
-<link rel="shortcut icon" href="assets/ico/favicon.html">
+<link rel="shortcut icon" href="{{ URL::asset('web_assets/assets/ico/favicon.html') }}">
 </head>
 <body>
 <!-- Header Start -->

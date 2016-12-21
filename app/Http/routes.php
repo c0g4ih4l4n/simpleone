@@ -119,3 +119,7 @@ Route::get('/test', function () {
 	Cart::add('293ad', 'Product 1', 1, 9.99);
 	return view('admin.user_add');
 });
+
+Route::get('welcome', function () {
+	return view('welcome');
+});

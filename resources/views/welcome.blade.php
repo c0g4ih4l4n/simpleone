@@ -1,45 +1,56 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SimpleOne - A Responsive Html5 Ecommerce Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,400italic,600,600italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/flexslider.css" type="text/css" media="screen" rel="stylesheet"  />
+<link href="css/jquery.fancybox.css" rel="stylesheet">
+<link href="css/cloud-zoom.css" rel="stylesheet">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!-- fav -->
+<link rel="shortcut icon" href="assets/ico/favicon.html">
+</head>
+<body>
+<!-- Header Start -->
 
-        <style>
-            html, body {
-                height: 100%;
-            }
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+<div id="maincontainer">
+  <!-- Slider Start-->
+  <section class="slider">
+    <div class="container">
+      <div class="flexslider" id="mainslider">
+        <ul class="slides">
+          <li>
+            <img src="img/banner1.jpg" alt="" />
+          </li>
+          <li>
+            <img src="img/banner2.jpg" alt="" />
+          </li>
+          <li>
+            <img src="img/banner1.jpg" alt="" />
+          </li>
+          <li>
+            <img src="img/banner2.jpg" alt="" />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Slider End-->
+</div>
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+<!-- Footer -->
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
-        </div>
-    </body>
-</html>
+@include ('front.footer')
