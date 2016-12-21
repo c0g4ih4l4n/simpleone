@@ -46,11 +46,11 @@
               <div class="navbar-inner">
 
                 <ul class="nav" >
-                  
+                
+                @if (empty($user)) 
                   <li><a class="home active" href="{{ URL::route('home') }}">Home</a>
                   </li>
-
-                @if (empty($user)) 
+                  
                   <li><a class="myaccount" href="{!! URL::to('login') !!}">Log In</a>
                   </li>
                 @elseif ($user->user_level == 0) 
