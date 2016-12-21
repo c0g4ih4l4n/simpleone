@@ -81,7 +81,10 @@ class ProductRepository extends AbstractRepository
         $product->vote = $product->votes;
         $product->vote->aveVote = $product->averageVote();
 
-        $product->photo = $product->photos->last()->name;
+        if ($product->photos->last() != null) 
+        {
+            $product->photo = $product->photos->last()->name;
+        }
 
         return $product;
     }

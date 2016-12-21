@@ -38,10 +38,22 @@ Route::group(['middleware' => 'web'], function () {
 		'middleware' => 'auth',
 		'uses' => 'VotingController@store',
 	]);
-	
-	Route::resource('categories', 'CategoryController', ['only' => ['show', 'index']]);
 
-	Route::resource('products', 'ProductController', ['only' => ['show', 'index']]);
+	Route::group(['prefix' => 'categories'], function () {
+		Route::get('/{id?}', ['as' => 'listCategory', 'uses' => 'HomeController@listCategory']);
+	});
+
+	Route::get('add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
+
+	Route::get('/products', ['as' => 'listProduct', 'uses' => 'ProductController@listProduct']);
+	Route::resource('products', 'ProductController', ['only' => ['show']]);
+
+	Route::get('shoppingcarts', ['as' => 'shoppingcarts', 'uses' => 'CartController@list']);
+
+	Route::get('checkout', ['as' => 'checkout', 'uses' => 'CartController@checkOut']);
+	Route::get('pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
+
+	Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
 
 	Route::resource('users', 'UserController', ['only' => ['show', 'index', 'edit', 'update']]);
 
@@ -71,11 +83,12 @@ Route::group(['middleware' => 'web'], function () {
 
 			Route::resource('comments', 'CommentController', ['except' => ['index', 'create', 'edit'], 
 				'names' => [
-				'show' => 'comments.show',
-				'store' => 'comments.store',
-				'update' => 'comments.update',
-				'destroy' => 'comments.destroy',
-			]]);
+					'show' => 'comments.show',
+					'store' => 'comments.store',
+					'update' => 'comments.update',
+					'destroy' => 'comments.destroy',
+				]
+			]);
 		});
 		
 	});
@@ -90,7 +103,7 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::auth();
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
 
 		Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@index']);
 
@@ -103,8 +116,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
 // Categories
 Route::get('/test', function () {
-	Cart::add('192ao12', 'Product 1', 1, 9.99);
-	Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
-
-	return view('test');
+	Cart::add('293ad', 'Product 1', 1, 9.99);
+	return view('admin.user_add');
 });

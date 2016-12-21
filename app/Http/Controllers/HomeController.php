@@ -59,6 +59,7 @@ class HomeController extends Controller
         $sort_categories = $this->categories->toArray();
         usort($sort_categories, array ($this, 'compareInteger'));
 
+
         $data = array (
             'user' => $this->user,
             'categories' => $this->categories,
@@ -66,7 +67,41 @@ class HomeController extends Controller
             'products' => $this->products
             );
         
-        return view('interface.home')->with($data);
+        return view('newTemplate.index')->with($data);
+    }
+
+    public function listCategory()
+    {
+        $sort_categories = $this->categories->toArray();
+
+        if (func_num_args() != 0)
+        {
+            $id = func_get_arg(0);
+            $products = Product::where('category_id', '=', $id)->get();
+
+            foreach ($products as $product) {
+                if ($product->photos->last() == null) 
+                    $product->photo = null;
+                else $product->photo = $product->photos->last()->name;
+            }
+        }
+
+        usort($sort_categories, array ($this, 'compareInteger'));
+
+
+        $data = array (
+            'user' => $this->user,
+            'categories' => $this->categories,
+            'sort_categories' => $sort_categories,
+            );
+
+        if (isset($products)) {
+            $data['products'] = $products;
+        } else {
+            $data['products'] = $this->products;       
+        }
+
+        return view('newTemplate.category')->with($data);
     }
 
     public function listCategory()

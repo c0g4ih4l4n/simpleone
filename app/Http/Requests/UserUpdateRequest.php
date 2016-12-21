@@ -24,7 +24,7 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         return [
-            'user_name' => 'required|max:20'
+            'name' => 'required|max:20'
         ];
     }
 }

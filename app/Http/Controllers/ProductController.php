@@ -56,7 +56,12 @@ class ProductController extends Controller
             'products' => $products,
             );
         // return view('interface.view_product')->with($data);
-        return view('admin.index_product')->with($data);
+        return view('admin.product_list')->with($data);
+    }
+
+    public function listProduct()
+    {
+        return view('newTemplate.product');
     }
 
     /**
@@ -71,7 +76,7 @@ class ProductController extends Controller
             'message' => $message,
             'user' => $this->user,
             );
-        return view('admin.add_product')->with($data);
+        return view('admin.product_add')->with($data);
     }
 
     /**
@@ -114,7 +119,7 @@ class ProductController extends Controller
             'reviews' => $reviews,
             'comments' => $comments,
             );
-        return view('interface.product_detail')->with($data);
+        return view('newTemplate.product')->with($data);
     }
 
     /**
@@ -131,7 +136,7 @@ class ProductController extends Controller
             'product' => $product,
             'user' => $this->user,
             );
-        return view('admin.edit_product')->with($data);
+        return view('admin.product_edit')->with($data);
     }
 
     /**

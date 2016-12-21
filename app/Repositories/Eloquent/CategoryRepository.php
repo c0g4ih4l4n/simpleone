@@ -84,6 +84,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
         	App::abort(500, 'Some Error');
         }
 
+        if (isset($file))
         $photoRepository->savePhoto($file, $this->type, $category->id);
 
         $message = 'Success';
