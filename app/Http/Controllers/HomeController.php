@@ -104,37 +104,37 @@ class HomeController extends Controller
         return view('newTemplate.category')->with($data);
     }
 
-    public function listCategory()
-    {
-        $sort_categories = $this->categories->toArray();
+    // public function listCategory()
+    // {
+    //     $sort_categories = $this->categories->toArray();
 
-        if (func_num_args() != 0)
-        {
-            $id = func_get_arg(0);
-            $products = Product::where('category_id', '=', $id)->get();
+    //     if (func_num_args() != 0)
+    //     {
+    //         $id = func_get_arg(0);
+    //         $products = Product::where('category_id', '=', $id)->get();
 
-            foreach ($products as $product) {
-                if ($product->photos->last() == null) 
-                    $product->photo = null;
-                else $product->photo = $product->photos->last()->name;
-            }
-        }
+    //         foreach ($products as $product) {
+    //             if ($product->photos->last() == null) 
+    //                 $product->photo = null;
+    //             else $product->photo = $product->photos->last()->name;
+    //         }
+    //     }
 
-        usort($sort_categories, array ($this, 'compareInteger'));
+    //     usort($sort_categories, array ($this, 'compareInteger'));
 
-        $data = array (
-            'user' => $this->user,
-            'categories' => $this->categories,
-            'sort_categories' => $sort_categories,
-            );
-        if (isset($products)) {
-            $data['products'] = $products;
-        } else {
-            $data['products'] = $this->products;       
-        }
+    //     $data = array (
+    //         'user' => $this->user,
+    //         'categories' => $this->categories,
+    //         'sort_categories' => $sort_categories,
+    //         );
+    //     if (isset($products)) {
+    //         $data['products'] = $products;
+    //     } else {
+    //         $data['products'] = $this->products;       
+    //     }
 
-        return view('template.category')->with($data);
-    }
+    //     return view('template.category')->with($data);
+    // }
 
     function compareInteger($a, $b) {
         if ($a['order_number'] == $b['order_number']) 
