@@ -11,6 +11,10 @@ use App\Http\Requests;
 
 use App\Models\Product;
 use App\Models\Shoppingcart;
+use App\Models\Checkout;
+
+use App\Repositories\Eloquent\CheckoutRepository;
+
 use Cart;
 use App\Http\Traits\TakePhoto;
 
@@ -97,25 +101,53 @@ class CartController extends Controller
     {
         Cart::instance('shopping');
 
+        // if user balance less than total of Cart
+        // return
         if ($this->user->user_balance < Cart::total())
         {
             return;
         }
 
+        // save delivery informantion to database
+        $checkoutRepository = new CheckoutRepository(new Checkout);
+
+        $checkoutRepository->createNew($request, $this->user, $this->identifier);
+
+        // Create new Cart Delivery
         foreach (Cart::content() as $row) 
         {
             Cart::instance('deliver');
             Cart::add($row->id, $row->product_name, $row->qty, $row->price)->associate('App\Models\Product');
         }
 
+        // Delete Shopping Cart
+        Cart::instance('shopping');
         Cart::restore($this->identifier);
 
+
+        // Save Deliver cart
+        $cart = Cart::instance('deliver');
+        $content = $cart->content();
+
+        var_dump($content);
+
+        // if ($cart->storedCartWithIdentifierExists($identifier)) {
+        //     throw new CartAlreadyStoredException("A cart with identifier {$identifier} was already stored.");
+        // }
+
+        // $cart->getConnection()->table('deliver')->insert([
+        //     'identifier' => $this->identifier,
+        //     'instance' => $cart->currentInstance(),
+        //     'content' => serialize($content)
+        // ]);
+
+        // // Subtract user balance
         // $this->user->user_balance -= Cart::total();
         // $this->user->save();
 
-        // Cart::destroy();
+        // Cart::instance('shopping')->destroy();
 
-        return $this->list();
+        // return $this->list();
     }
     /**
      * Show the form for creating a new resource.
