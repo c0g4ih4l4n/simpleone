@@ -12,7 +12,7 @@ class Category extends Model implements HasPresenter
 {
     protected $table = "categories";
 
-    protected $fillable = ['id', 'category_name', 'order_number', 'category_description', 'number_of_products'];
+    protected $fillable = ['id', 'category_name', 'parent_id', 'order_number', 'category_description', 'number_of_products'];
 
     public $timestamps = true;
 

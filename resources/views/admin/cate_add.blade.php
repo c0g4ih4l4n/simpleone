@@ -11,6 +11,8 @@
                         <small>Add</small>
                     </h1>
                 </div>
+
+
                 <!-- /.col-lg-12 -->
                 @if (isset($message))
                     <div class="alert alert-success">
@@ -28,34 +30,48 @@
                         </ul>
                     </div>
                 @endif
+
                 <div class="col-lg-7" style="padding-bottom:120px">
-                <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}" enctype="multipart/form-data" multiple>
+
+                    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}" enctype="multipart/form-data" multiple>
+
                         {{ csrf_field() }}
+
                         <div class="form-group">
                             <label>Category Parent</label>
-                            <select class="form-control">
+                            <select class="form-control" name="parent_id">
                                 <option value="0">Please Choose Category</option>
                                 @foreach ($categories as $category) 
                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>
+
+
                         <div class="form-group">
                             <label>Category Name</label>
                             <input class="form-control" name="category_name" placeholder="Please Enter Category Name" />
                         </div>
+
+
                         <div class="form-group">
                             <label>Category Order</label>
                             <input class="form-control" name="category_order" placeholder="Please Enter Category Order" />
                         </div>
+
+
                         <div class="form-group">
                             <label>Category Keywords</label>
                             <input class="form-control" name="category_keyword" placeholder="Please Enter Category Keywords" />
                         </div>
+
+
                         <div class="form-group">
                             <label>Category Description</label>
                             <textarea class="form-control" rows="3" name="category_description"></textarea>
                         </div>
+
+
                         <div class="form-group">
                             <label>Category Status</label>
                             <label class="radio-inline">
@@ -65,12 +81,18 @@
                                 <input name="category_status" value="2" type="radio">Invisible
                             </label>
                         </div>
+
+
                         <div class="form-group">
                             <label class="control-label" for="photo">Image</label>
-                            <input type="file" name="category_image" id="file-input">
+                            <input type="file" name="category_image" id="file-input" name="photo">
                         </div>
+
+
                         <button type="submit" class="btn btn-default">Category Add</button>
                         <button type="reset" class="btn btn-default">Reset</button>
+
+
                     <form>
                 </div>
             </div>

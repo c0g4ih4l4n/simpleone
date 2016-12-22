@@ -74,6 +74,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 		$category = Category::create([
 			'category_name' => $request['category_name'],
+			'parent_id' => $request['parent_id'],
         	'category_description' => $request['category_description'],
         	'order_number' => 1,
         	'number_of_products' => 0
