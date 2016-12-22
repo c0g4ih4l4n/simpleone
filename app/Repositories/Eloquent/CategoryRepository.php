@@ -76,7 +76,8 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 			'category_name' => $request['category_name'],
 			'parent_id' => $request['parent_id'],
         	'category_description' => $request['category_description'],
-        	'order_number' => 1,
+        	'keyword' => $request['category_keyword'],
+        	'order_number' => $request['category_order'],
         	'number_of_products' => 0
         ]);
 

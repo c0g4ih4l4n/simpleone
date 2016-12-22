@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category_name')->unique();
             $table->integer('parent_id');
             $table->text('category_description');
+            $table->string('keyword');
             $table->integer('order_number')->nullable();
             $table->integer('number_of_products')->nullable();
             $table->timestamps();

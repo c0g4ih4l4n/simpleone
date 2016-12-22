@@ -26,10 +26,26 @@
           <div class="sidewidt">
             <h2 class="heading2"><span>Categories</span></h2>
             <ul class="nav nav-list categories">
+
+            {{-- Hien category theo cay --}}
             @foreach ($sort_categories as $category)
+            {{-- goc --}}
+            @if ($category['parent_id'] == 0)
               <li>
                 <a href="{!! URL::route('listCategory', $category['id']) !!}">{{ $category['category_name'] }}</a>
+
+                {{-- First Descend  --}}
+                <ul class="nav nav-list categories">
+                @foreach ($sort_categories as $category_child)
+                @if ($category_child['parent_id'] == $category['id'])
+                  <li>
+                    <a href="{!! URL::route('listCategory', $category_child['id']) !!}">{{ $category_child['category_name'] }}</a>
+                  </li>
+                @endif
+                @endforeach
+                </ul>
               </li>
+            @endif
             @endforeach
             </ul>
           </div>
