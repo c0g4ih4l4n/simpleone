@@ -18,7 +18,7 @@ class CreateCheckoutsTable extends Migration
             $table->string('identifier');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            // $table->string('email')->unique();
             $table->string('address');
             $table->string('post_code')->unique();
             $table->string('country');

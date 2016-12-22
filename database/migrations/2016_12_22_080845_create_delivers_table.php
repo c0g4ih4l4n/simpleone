@@ -16,7 +16,6 @@ class CreateDeliversTable extends Migration
             $table->increments('id');
             $table->integer('checkout_id');
             $table->string('identifier');
-            $table->string('instance');
             $table->longText('content');
             $table->nullableTimestamps();
 

@@ -22,11 +22,20 @@ class CheckoutRepository extends AbstractRepository
 			'identifier' => $identifier,
 			'first_name' => $request->first_name,
 			'last_name' => $request->last_name,
-			'email' => $user->email,
 			'address' => $request->address,
+			// 'phone' => $request->phone,
 			'post_code' => $request->post_code,
 			'paid' => true,
 			'recieved' => false
 			]);
+	}
+
+	public function findId(User $user, $identifier) 
+	{
+		$checkout = Checkout::where([
+			['owner', '=', 1],
+			['identifier', '=', 1]
+			])->first();
+		return $checkout->id;
 	}
 }

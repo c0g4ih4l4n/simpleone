@@ -12,8 +12,10 @@ use App\Http\Requests;
 use App\Models\Product;
 use App\Models\Shoppingcart;
 use App\Models\Checkout;
+use App\Models\Deliver;
 
 use App\Repositories\Eloquent\CheckoutRepository;
+use App\Repositories\Eloquent\DeliverRepository;
 
 use Cart;
 use App\Http\Traits\TakePhoto;
@@ -113,12 +115,9 @@ class CartController extends Controller
 
         $checkoutRepository->createNew($request, $this->user, $this->identifier);
 
+        $id = $checkoutRepository->findId($this->user, $this->identifier);
+
         // Create new Cart Delivery
-        foreach (Cart::content() as $row) 
-        {
-            Cart::instance('deliver');
-            Cart::add($row->id, $row->product_name, $row->qty, $row->price)->associate('App\Models\Product');
-        }
 
         // Delete Shopping Cart
         Cart::instance('shopping');
@@ -126,28 +125,17 @@ class CartController extends Controller
 
 
         // Save Deliver cart
-        $cart = Cart::instance('deliver');
-        $content = $cart->content();
+        $cart = Cart::instance('shopping');
+        $deliverRepository = new DeliverRepository(new Deliver);
+        $deliverRepository->createNew($id, Cart::instance('shopping'), $this->identifier);
 
-        var_dump($content);
+        // Subtract user balance
+        $this->user->user_balance -= Cart::total();
+        $this->user->save();
 
-        // if ($cart->storedCartWithIdentifierExists($identifier)) {
-        //     throw new CartAlreadyStoredException("A cart with identifier {$identifier} was already stored.");
-        // }
+        Cart::instance('shopping')->destroy();
 
-        // $cart->getConnection()->table('deliver')->insert([
-        //     'identifier' => $this->identifier,
-        //     'instance' => $cart->currentInstance(),
-        //     'content' => serialize($content)
-        // ]);
-
-        // // Subtract user balance
-        // $this->user->user_balance -= Cart::total();
-        // $this->user->save();
-
-        // Cart::instance('shopping')->destroy();
-
-        // return $this->list();
+        return $this->list();
     }
     /**
      * Show the form for creating a new resource.
