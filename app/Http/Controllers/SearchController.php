@@ -28,7 +28,8 @@ class SearchController extends Controller
     public function search() 
     {
     	$keyword = Input::get('keyword', '');
-		$products = Product::SearchByKeyword($keyword)->get();
+    	$id = Input::get('search_cate', '');
+		$products = Product::SearchByKeyword($keyword, $id)->get();
 
         foreach ($products as $product) {
             if ($product->photos->last() == null) 
@@ -39,10 +40,12 @@ class SearchController extends Controller
 		$data = array (
 			'user' => $this->user,
 			'keyword' => $keyword,
+			'search_cate' => $id,
 			'products' => $products,
+			'categories' => $this->categories,
 			'sort_categories' => $this->categories
 			);
 
-		return view('interface.view_product')->with($data);
+		return view('newTemplate.category')->with($data);
     }
 }

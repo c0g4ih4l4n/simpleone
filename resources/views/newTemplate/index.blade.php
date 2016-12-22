@@ -2,6 +2,8 @@
 
 @section ('content')
 
+@include ('front.form-search')
+
 <div id="maincontainer">
   <!-- Slider Start-->
   <section class="slider">

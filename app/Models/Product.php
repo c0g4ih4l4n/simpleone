@@ -82,13 +82,13 @@ class Product extends Model implements Votingable, HasPresenter
         return $this->morphMany('App\Models\Photo', 'photo');
     }
 
-    public function scopeSearchByKeyword($query, $keyword)
+    public function scopeSearchByKeyword($query, $keyword, $id)
     {
         if ($keyword!='') {
 
-            $query->where(function ($query) use ($keyword) {
-                $query->where("product_name", "LIKE","%$keyword%");
-                    // ->orWhere("category_name", "LIKE", "%$keyword%")
+            $query->where(function ($query) use ($keyword, $id) {
+                $query->where("product_name", "LIKE","%$keyword%")
+                    ->where("category_id", '=', $id);
                     // ->orWhere("supplier_name", "LIKE", "%$keyword%");
             });
         }

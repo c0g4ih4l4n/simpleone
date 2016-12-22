@@ -28,6 +28,7 @@ class HomeController extends Controller
     private $user;
     private $categories;
     private $products;
+    
     public function __construct()
     {        
         if (Auth::check()) {

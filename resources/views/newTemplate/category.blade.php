@@ -2,6 +2,8 @@
 
 @section ('content')
 
+@include ('front.form-search')
+
 <div id="maincontainer">
   <section id="product">
     <div class="container">
@@ -28,18 +30,18 @@
             <ul class="nav nav-list categories">
 
             {{-- Hien category theo cay --}}
-            @foreach ($sort_categories as $category)
+            @foreach ($categories as $category)
             {{-- goc --}}
-            @if ($category['parent_id'] == 0)
+            @if ($category->parent_id == 0)
               <li>
-                <a href="{!! URL::route('listCategory', $category['id']) !!}">{{ $category['category_name'] }}</a>
+                <a href="{!! URL::route('listCategory', $category->id) !!}">{{ $category->category_name }}</a>
 
                 {{-- First Descend  --}}
                 <ul class="nav nav-list categories">
-                @foreach ($sort_categories as $category_child)
-                @if ($category_child['parent_id'] == $category['id'])
+                @foreach ($categories as $category_child)
+                @if ($category_child->parent_id == $category->id)
                   <li>
-                    <a href="{!! URL::route('listCategory', $category_child['id']) !!}">{{ $category_child['category_name'] }}</a>
+                    <a href="{!! URL::route('listCategory', $category_child->id) !!}">{{ $category_child->category_name }}</a>
                   </li>
                 @endif
                 @endforeach

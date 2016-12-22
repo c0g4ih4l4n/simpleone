@@ -1,6 +1,5 @@
 <div class="form-search">
 <form id="search-form" action="{{ URL::route('search') }}" method="GET">
-    {{ csrf_field() }}
     {{-- <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="category-dropdown">All <span class="caret"></span></button>
         <ul class="search-menu" role="menu">
@@ -10,15 +9,24 @@
         @endforeach
         </ul>
     </div> --}}
-    <select name="search-menu" id="">
+    <select name="search_cate" id="">
         <option value="0">All Category</option>
 
-        @foreach ($sort_categories as $category)
-            <option value="{{ $category['id'] }}">{!! $category['category_name'] !!}</option>
+        @if (isset($search_cate))
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}" @if ($category->id == $search_cate) selected="selected" @endif>{!! $category->category_name !!}</option>
         @endforeach
-        
+
+        @else 
+
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{!! $category->category_name !!}</option>
+        @endforeach
+
+        @endif
+
     </select>
-    <input class="form-control" type="search" placeholder="Search Here" id="search-field" name="keyword">
+    <input class="form-control" type="search" placeholder="Search Here" id="search-field" name="keyword" @if (isset($keyword)) value="{{ $keyword }}" @endif>
     <button class="btn btn-warning search-button" type="submit"><img class="search-icon" src="{{ URL::asset('img/search.png') }}" alt=""></button>
 </form>
 </div>
