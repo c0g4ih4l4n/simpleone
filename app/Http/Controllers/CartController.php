@@ -16,6 +16,7 @@ use App\Models\Deliver;
 
 use App\Repositories\Eloquent\CheckoutRepository;
 use App\Repositories\Eloquent\DeliverRepository;
+use App\Repositories\Eloquent\ProductRepository;
 
 use Cart;
 use App\Http\Traits\TakePhoto;
@@ -28,6 +29,7 @@ class CartController extends Controller
 
     private $carts;
 
+    private $productRepository;
     // indentifier of cart
     // each user have own identifier
     private $identifier;
@@ -133,9 +135,17 @@ class CartController extends Controller
         $this->user->user_balance -= Cart::total();
         $this->user->save();
 
+        // increase sold of product
+        // 
+        foreach (Cart::content() as $row) 
+        {
+            $row->model->increaseSold($row->model->id, $row->qty);
+            $row->model->decreaseQuantity($row->model->id, $row->qty);
+        }
+
         Cart::instance('shopping')->destroy();
 
-        return $this->list();
+        return Redirect::route('shoppingcart');
     }
     /**
      * Show the form for creating a new resource.

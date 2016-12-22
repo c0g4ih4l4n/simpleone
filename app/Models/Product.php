@@ -24,7 +24,7 @@ class Product extends Model implements Votingable, HasPresenter
     use VoteTrait;
     protected $table = 'products';
 
-    protected $fillable = ['product_name', 'product_description', 'quantity', 'category_id', 'supplier_id'];
+    protected $fillable = ['product_name', 'product_description', 'quantity', 'sold', 'category_id', 'supplier_id'];
 
     public $timestamp = true;
 
@@ -93,5 +93,23 @@ class Product extends Model implements Votingable, HasPresenter
             });
         }
         return $query;
+    }
+
+    public function increaseSold($id, $quantity) 
+    {
+        $product = Product::find($id);
+
+        $product->sold += $quantity;
+
+        $product->save();
+    }
+
+    public function decreaseQuantity($id, $quantity)
+    {
+        $product = Product::find($id);
+
+        $product->quantity -= $quantity;
+
+        $product->save();
     }
 }
