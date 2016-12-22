@@ -80,5 +80,9 @@
 <script type="text/javascript"  src="{{ URL::asset('web_assets/js/jquery.ba-throttle-debounce.min.js') }}"></script>
 <script defer src="{{ URL::asset('web_assets/js/custom.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/cart.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script> --}}
+<script src="{!! URL::asset('old_assets/ckeditor/ckeditor.js') !!}"></script>
+<script src="{!! URL::asset('old_assets/js/script.js') !!}"></script>
+<script src="{!! URL::asset('old_assets/js/voting.js') !!}"></script>
 </body>
 </html>

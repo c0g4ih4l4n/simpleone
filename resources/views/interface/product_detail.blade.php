@@ -2,15 +2,15 @@
 @section ('content')
     <ol class="breadcrumb">
         <li><a href="{!! URL::route('home') !!}"><span>Store </span></a></li>
-        <li><a href="{!! URL::route('categories.show', $product->category_id) !!}"><span>{!! $product->category_name !!}</span></a></li>
+        <li><a href="><span>{!! $product->category_name !!}</span></a></li>
         <li class="active"><span>{!! $product->product_name !!} </span></li>
     </ol>
     <div class="container">
         <div class="row product">
             <div class="col-md-4 col-md-offset-0"><img class="img-responsive" src="{!! URL::route('get_photo', $product->photo) !!}"></div>
             <div class="col-md-8">
-                <h2>{!! $product['product_name'] !!}</h2>
-                <p>{!! $product['product_description'] !!} </p>
+            <h2>{!! $product->product_name !!}</h2>
+            <p>{!! $product->product_description !!} </p>
                 <select>
                     <option value="" selected="">Chose Your Size</option>
                     <option value="xxl">XXL</option>
@@ -22,7 +22,7 @@
                 {{-- Color --}}
                 {{-- Supplier --}}
 
-                <h3>${!! $product['price'] !!} </h3>
+                <h3>${!! $product->price !!} </h3>
                 <a href="{{ URL::route('cart_add', $product->id) }}" class="btn btn-primary" type="button">Add to cart</a>
                 <form class="vote_form vote_product" action="{{ URL::route('vote') }}">
                     {{ csrf_field() }}

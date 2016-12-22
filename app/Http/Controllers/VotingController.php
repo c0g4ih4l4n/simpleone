@@ -149,4 +149,9 @@ class VotingController extends Controller implements Votingable
 		return;
 	}
 
+	public function delete() 
+	{
+		
+	}
+
 }

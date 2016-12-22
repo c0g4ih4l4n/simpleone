@@ -25,6 +25,8 @@
 <link rel="shortcut icon" href="{{ URL::asset('web_assets/assets/ico/favicon.html') }}">
 
 <link rel="stylesheet" href="{{ URL::asset('css/cart.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/user.css') }}">
+{{-- <link rel="stylesheet" href="{!! URL::asset('css/bootstrap.min.css') !!}"> --}}
 </head>
 <body>
 <!-- Header Start -->

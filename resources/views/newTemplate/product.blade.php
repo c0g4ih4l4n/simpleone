@@ -141,22 +141,43 @@
 
                     <h3>Write a Review</h3>
 
-                    <form class="form-vertical">
-                      <fieldset>
-                        <div class="control-group">
-                          <label class="control-label">Text input</label>
-                          <div class="controls">
-                            <input type="text" class="span3">
+                    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('products::reviews.store', $product->id) }}">
+
+                      {{ csrf_field() }}
+
+                      @if (isset($message))
+                          <div class="alert alert-success">
+                              <ul>
+                                  <li>{{ $message }}</li>
+                              </ul>
                           </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label">Textarea</label>
-                          <div class="controls">
-                            <textarea rows="3"  class="span3"></textarea>
+                      @endif
+                      @if (count($errors) > 0)
+                          <div class="alert alert-danger">
+                              <ul>
+                                  @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                              </ul>
                           </div>
+                      @endif
+
+                      <div class="form-group">
+                        <label class="control-label">Title</label>
+                        <div class="controls">
+                          <input type="text" class="span3" name="review_title">
                         </div>
-                      </fieldset>
+                      </div>
+
+                      <div class="control-group">
+                        <label class="control-label">Description </label>
+                        <div class="controls">
+                          <textarea rows="3"  class="span3" name="review_content"></textarea>
+                        </div>
+                      </div>
+
                       <input type="submit" class="btn btn-orange" value="continue">
+
                     </form>
 
                   </div>
@@ -226,4 +247,8 @@
   </section>
   <!-- Popular Brands-->
 </div>
+
+@include ('front.staff.review')
+@include ('front.staff.comment')
+
 @stop

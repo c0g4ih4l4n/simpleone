@@ -85,6 +85,7 @@ Route::group(['middleware' => 'web'], function () {
 			'update' => 'reviews.update',
 			'destroy' => 'reviews.destroy',
 			]]);
+		
 		Route::group(['prefix' => 'reviews/{review_id}', 'as' => 'reviews::'], function () {
 			Route::get('/', 'ReviewController@show');
 
@@ -123,8 +124,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function ()
 
 // Categories
 Route::get('/test', function () {
-	Cart::add('293ad', 'Product 1', 1, 9.99);
-	return view('admin.user_add');
+	$product = App\Models\Product::find(2);
+	$reviews = App\Models\Review::all();
+	$comments = App\Models\Comment::all();
+	$data = array (
+		'product' => $product,
+		'reviews' => $reviews,
+		'comments' => $comments
+		);
+	return view('interface.product_detail')->with($data);
 });
 
 Route::get('welcome', function () {

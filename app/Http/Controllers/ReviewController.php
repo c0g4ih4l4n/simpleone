@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Request;
-
+use Request as RequestSegment;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
@@ -33,7 +33,7 @@ class ReviewController extends Controller
         //$this->product = Product::findOrFail();
         // 
         $this->middleware('auth', ['except' => ['show', 'index']]);
-        $id = (int)Request::segment(2);
+        $id = (int)RequestSegment::segment(2);
         $this->product = Product::find($id);
     }
 
@@ -44,7 +44,6 @@ class ReviewController extends Controller
      */
     public function index($id, Request $request)
     {
-
         $reviews = Review::where('product_id', '=', $id)->get();
         foreach ($reviews as $review) {
             $review->author = $review->user->name;            
@@ -86,7 +85,7 @@ class ReviewController extends Controller
         $review->product_id = $id;
         $review->user_id = $this->user->id;
         $review->save();
-        return Redirect::route('products.show', $id);
+        return Redirect::route('products::', $id);
     }
 
     /**
