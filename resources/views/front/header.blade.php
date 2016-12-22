@@ -153,3 +153,5 @@
   </div>
 </header>
 <!-- Header End -->
+
+@include ('front.form-search')

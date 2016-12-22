@@ -4,3 +4,13 @@
 .comment {
 	margin: 20px 60px;
 }
+.search-icon {
+	width: 18px;
+	height: 18px;
+}
+.search-button {
+	border-radius: 4px;
+}
+.form-search {
+	margin: 0px 60px;
+}
