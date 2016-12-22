@@ -13,75 +13,104 @@
         </li>
         <li class="active">Checkout</li>
       </ul>
-      <div class="row">        
+      <div class="row">    
+
+
         <!-- Account Login-->
         <div class="span9">
+
+          <form class="form-horizontal" action="{{ URL::route('pay') }}" method="POST">
+
+          {{ csrf_field() }}
+
+          @if (isset($message))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{{ $message }}</li>
+                </ul>
+            </div>
+          @endif
+          @if (count($errors) > 0)
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+          
           <div class="checkoutsteptitle">Step 1 : Delivery Details<a class="modify">Modify</a>
           </div>
+
           <div class="checkoutstep">
             <div class="row">
-              <form class="form-horizontal">
+
+
                 <fieldset>
+
                   <div class="span4">
                     <div class="control-group">
                       <label class="control-label" >First Name<span class="red">*</span></label>
                       <div class="controls">
-                        <input type="text" class=""  value="">
+                        <input type="text" class=""  value="" name="first_name">
                       </div>
                     </div>
+
                     <div class="control-group">
                       <label class="control-label" >Last Name<span class="red">*</span></label>
                       <div class="controls">
-                        <input type="text" class=""  value="">
+                        <input type="text" class=""  value="" name="last_name">
                       </div>
                     </div>
+
+                    @if (empty($user))
                     <div class="control-group">
                       <label class="control-label" >E-Mail<span class="red">*</span></label>
                       <div class="controls">
-                        <input type="text" class=""  value="">
+                        <input type="text" class=""  value="" name="email">
                       </div>
                     </div>
+                    @endif
+
                   </div>
+
+
                   <div class="span4">
+
+
                     <div class="control-group">
                       <label class="control-label" >Address<span class="red">*</span></label>
                       <div class="controls">
-                        <input type="text" class=""  value="">
+                        <input type="text" class=""  value="" name="address">
                       </div>
                     </div>
+
                     <div class="control-group">
                       <label class="control-label" >Post Code<span class="red">*</span></label>
                       <div class="controls">
-                        <input type="text" class=""  value="">
+                        <input type="text" class=""  value="" name="post_code">
                       </div>
                     </div>
+
                     <div class="control-group">
-                      <label class="control-label" >Country<span class="red">*</span></label>
+                      <label class="control-label" >Delivery Method<span class="red">*</span></label>
                       <div class="controls">
-                        <select >
-                          <option>Please Select</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                        <select name="method">
+                          <option value="0">Please Select</option>
+                          <option value="3">Super Delivery</option>
+                          <option value="2">Fast Delivery</option>
+                          <option value="1">Normal Delevery</option>
                         </select>
                       </div>
                     </div>
-                    {{-- <div class="control-group">
-                      <label class="control-label" >Region / State<span class="red">*</span></label>
-                      <div class="controls">
-                        <select >
-                          <option>Please Select</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                      </div>
-                    </div> --}}
+
+
                   </div>
                 </fieldset>
-              </form>
+
+
+ 
             </div>
           </div>
 
@@ -169,10 +198,10 @@
 
             </div>
 
-            <a href="{{ URL::route('pay') }}" class="btn btn-orange pull-right">Checkout</a>
+            <button type="submit" class="btn btn-orange pull-right">Checkout</button>
           </div>
         </div>
-
+        </form>
 
         <!-- Sidebar Start-->
         <div class="span3">
@@ -206,6 +235,8 @@
         </div>
         <!-- Sidebar End-->
       </div>
+
+
     </div>
   </section>
 </div>

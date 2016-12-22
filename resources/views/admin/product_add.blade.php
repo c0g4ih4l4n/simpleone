@@ -60,7 +60,7 @@
                         <button type="reset" class="btn btn-default">Reset</button>
                     </form> --}}
 
-                    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.products.store') }}">
+                    <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.products.store') }}" enctype="multipart/form-data" multiple>
                         {{ csrf_field() }}
                         @if (isset($message))
                             <div class="alert alert-success">
@@ -109,7 +109,7 @@
                         <div class="form-group"></div>
                         <div class="form-group">
                             <label class="control-label" for="product_image">Product Image</label>
-                            <input type="file" name="product_image">
+                            <input type="file" name="photo">
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">

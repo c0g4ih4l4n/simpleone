@@ -37,8 +37,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CartController@checkout']);
 
 	// pay
-	Route::get('/pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
-
+	Route::post('/pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
 
 	// profile
 	Route::get('/profile', [

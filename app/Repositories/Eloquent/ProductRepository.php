@@ -196,7 +196,8 @@ class ProductRepository extends AbstractRepository
     {
         ProductItem::where('product_id', '=', $id)->delete();
         // Xoa product xong => giam so san pham trong category
-        $this->categoryRepository->decreaseNumOfProduct($id);
+        $product = Product::findOrFail($id);
+        $this->categoryRepository->decreaseNumOfProduct($product->category_id);
 
         Product::destroy($id); 
         return 'Success';

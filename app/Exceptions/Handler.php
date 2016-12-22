@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Gloudemans\Shoppingcart\Exceptions\CartAlreadyStoredException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -21,6 +23,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
+        CartAlreadyStoredException::class,
     ];
 
     /**

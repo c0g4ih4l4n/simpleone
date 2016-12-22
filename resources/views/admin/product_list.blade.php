@@ -32,12 +32,12 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->created_at }}</td>
                             <td>Hiện</td>
-                            <td><i class="fa fa-pencil fa-fw"></i><a href="{!! URL::route('admin.products.edit', $product['id']) !!}">Edit </a></td>
+                            <td><i class="fa fa-pencil fa-fw"></i><a href="{!! URL::route('admin.products.edit', $product->id) !!}">Edit </a></td>
                             <td>
-                            <form method="POST" action="{{ route('admin.products.destroy', $product['id']) }}">
+                            <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="id" value="{{ $product['id'] }}">
+                                <input type="hidden" name="id" value="{{ $product->id }}">
                                 <button type='submit' class="btn btn-link"><i class="fa fa-trash-o  fa-fw"></i>Delete</button>
                             </form>
                         </tr>

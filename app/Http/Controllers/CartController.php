@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\CheckoutRequest;
 
 use App\Http\Requests;
 
 use App\Models\Product;
+use App\Models\Shoppingcart;
 use Cart;
 use App\Http\Traits\TakePhoto;
 
@@ -26,6 +28,8 @@ class CartController extends Controller
         {
             $this->user = Auth::user();
         }
+
+        Cart::instance('shopping');
 
         $this->middleware('auth');
         $this->carts = Cart::content();
@@ -55,14 +59,12 @@ class CartController extends Controller
      */
     public function list() 
     {
-
         $data = array(
             'carts' => $this->carts,
             'user' => $this->user
             );
 
         return view('newTemplate.shopping-cart')->with($data);
-
     }
 
     /**
@@ -83,17 +85,27 @@ class CartController extends Controller
      * Thuc hien thanh toan
      * @return [type] [description]
      */
-    public function pay()
+    public function pay(Request $request)
     {
+        Cart::instance('shopping');
+
         if ($this->user->user_balance < Cart::total())
         {
             return;
         }
 
-        $this->user->user_balance -= Cart::total();
-        $this->user->save();
+        foreach (Cart::content() as $row) 
+        {
+            Cart::instance('deliver');
+            Cart::add($row->id, $row->product_name, $row->qty, $row->price)->associate('App\Models\Product');
+        }
 
-        Cart::destroy();
+        Cart::restore(2);
+
+        // $this->user->user_balance -= Cart::total();
+        // $this->user->save();
+
+        // Cart::destroy();
 
         return $this->list();
     }
@@ -109,9 +121,20 @@ class CartController extends Controller
 
     public function add($product_id)
     {
+        Cart::instance('shopping');
+
         $product = Product::findOrFail($product_id);
 
-        Cart::add($product_id, $product->product_name, 1, $product->item->price);
+        Cart::add($product_id, $product->product_name, 1, $product->item->price)->associate('App\Models\Product');
+
+        if (Shoppingcart::where('identifier', 'LIKE', 1)) 
+        {
+            Cart::restore(1);
+        }
+        else 
+        {
+            Cart::store(1);
+        }
 
         return Redirect::route('shoppingcart');
     }
@@ -158,8 +181,13 @@ class CartController extends Controller
      */
     public function update(Request $request, $rowId, $quantity)
     {
+        Cart::instance('shopping');
+
         Cart::update($rowId, $quantity);
-        return Redirect::back();
+
+        Cart::restore(1);
+
+        return Redirect::route('shoppingcart');
     }
 
     /**
@@ -169,8 +197,13 @@ class CartController extends Controller
      */
     public function remove($rowId) 
     {
+        Cart::instance('shopping');
+
         Cart::remove($rowId);
-        return Redirect::back();
+
+        Cart::restore(1);
+
+        return Redirect::route('shoppingcart');
     }
 
     /**

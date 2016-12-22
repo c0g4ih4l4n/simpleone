@@ -29,7 +29,7 @@
                     </div>
                 @endif
                 <div class="col-lg-7" style="padding-bottom:120px">
-                <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}">
+                <form class="bootstrap-form-with-validation" role="form" method="POST" action="{{ URL::route('admin.categories.store') }}" enctype="multipart/form-data" multiple>
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Category Parent</label>
