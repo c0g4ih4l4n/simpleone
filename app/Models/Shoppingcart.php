@@ -10,5 +10,5 @@ class Shoppingcart extends Model
 
     protected $fillable = ['identifier', 'instance', 'content'];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

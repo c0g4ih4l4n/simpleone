@@ -22,16 +22,22 @@ class CartController extends Controller
 
     private $carts;
 
+    // indentifier of cart
+    // each user have own identifier
+    private $identifier;
+
     public function __construct() 
     {
-        if (Auth::check()) 
-        {
-            $this->user = Auth::user();
-        }
+        $this->middleware('auth');
+
+        $this->user = Auth::user();
+        $this->identifier = 1;
+
 
         Cart::instance('shopping');
 
-        $this->middleware('auth');
+        Cart::restore($this->identifier);
+
         $this->carts = Cart::content();
 
         foreach ($this->carts as $row) 
@@ -42,6 +48,8 @@ class CartController extends Controller
 
             $row->photo = $this->getPhotoName($product);
         }
+
+        Cart::store($this->identifier);
     }
     /**
      * Display a listing of the resource.
@@ -100,7 +108,7 @@ class CartController extends Controller
             Cart::add($row->id, $row->product_name, $row->qty, $row->price)->associate('App\Models\Product');
         }
 
-        Cart::restore(2);
+        Cart::restore($this->identifier);
 
         // $this->user->user_balance -= Cart::total();
         // $this->user->save();
@@ -125,16 +133,11 @@ class CartController extends Controller
 
         $product = Product::findOrFail($product_id);
 
+        Cart::restore($this->identifier);
+
         Cart::add($product_id, $product->product_name, 1, $product->item->price)->associate('App\Models\Product');
 
-        if (Shoppingcart::where('identifier', 'LIKE', 1)) 
-        {
-            Cart::restore(1);
-        }
-        else 
-        {
-            Cart::store(1);
-        }
+        Cart::store($this->identifier);
 
         return Redirect::route('shoppingcart');
     }
@@ -183,9 +186,11 @@ class CartController extends Controller
     {
         Cart::instance('shopping');
 
+        Cart::restore($this->identifier);
+
         Cart::update($rowId, $quantity);
 
-        Cart::restore(1);
+        Cart::store($this->identifier);
 
         return Redirect::route('shoppingcart');
     }
@@ -199,9 +204,11 @@ class CartController extends Controller
     {
         Cart::instance('shopping');
 
+        Cart::restore($this->identifier);
+
         Cart::remove($rowId);
 
-        Cart::restore(1);
+        Cart::store($this->identifier);
 
         return Redirect::route('shoppingcart');
     }
