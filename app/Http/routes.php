@@ -21,6 +21,8 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/search/{search?}', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 
+
+
 	// Cart
 	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@list']);
 
@@ -38,6 +40,22 @@ Route::group(['middleware' => 'web'], function () {
 
 	// pay
 	Route::post('/pay', ['as' => 'pay', 'uses' => 'CartController@pay']);
+
+
+
+
+
+	// wish list
+	Route::get('wish-list', ['as' => 'wishlist', 'uses' => 'CartController@wishlist']);
+
+	// add
+	Route::get('add-wish-list/{id}', ['as' => 'wishlist_add', 'uses' => 'CartController@addWishList']);
+	// remove
+	Route::get('remove-wish-list/{rowId}', ['as' => 'wishlist_remove', 'uses' => 'CartController@removeWishList']);
+
+
+
+
 
 	// profile
 	Route::get('/profile', [
@@ -130,9 +148,11 @@ Route::get('/test', function () {
 	$data = array (
 		'product' => $product,
 		'reviews' => $reviews,
-		'comments' => $comments
+		'comments' => $comments,
+		'categories' => App\Models\Category::all(),
+		'carts' => Cart::instance('wish-list')
 		);
-	return view('interface.product_detail')->with($data);
+	return view('newTemplate.wish-list')->with($data);
 });
 
 Route::get('welcome', function () {

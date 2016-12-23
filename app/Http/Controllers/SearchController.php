@@ -17,12 +17,18 @@ class SearchController extends Controller
 
 	protected $user;
 	protected $categories;
+	private $bestsellers;
+    private $lastestProducts;
 
 	public function __construct() 
 	{
 		if (Auth::check()) 
 			$this->user = Auth::user();
         $this->categories = Category::all();
+
+        $this->bestsellers = Product::orderBy('sold', 'desc')->limit(4)->get();
+
+        $this->lastestProducts = Product::orderBy('created_at', 'desc')->limit(4)->get();
 	}
 
     public function search() 
@@ -41,6 +47,8 @@ class SearchController extends Controller
 			'user' => $this->user,
 			'keyword' => $keyword,
 			'search_cate' => $id,
+			'bestsellers' => $this->bestsellers,
+			'lastestProducts' => $this->lastestProducts,
 			'products' => $products,
 			'categories' => $this->categories,
 			'sort_categories' => $this->categories

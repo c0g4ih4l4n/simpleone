@@ -11,16 +11,16 @@
       <div class="flexslider" id="mainslider">
         <ul class="slides">
           <li>
-            <img src="{{ URL::asset('web_assets/img/banner1.jpg') }}" alt="" />
+            <img src="{{ URL::asset('img/banner1.jpg') }}" alt="" />
           </li>
           <li>
-            <img src="{{ URL::asset('web_assets/img/banner2.jpg') }}" alt="" />
+            <img src="{{ URL::asset('img/bannerxmas.jpg') }}" alt="" />
           </li>
           <li>
-            <img src="{{ URL::asset('web_assets/img/banner1.jpg') }}" alt="" />
+            <img src="{{ URL::asset('img/banner3.jpg') }}" alt="" />
           </li>
           <li>
-            <img src="{{ URL::asset('web_assets/img/banner2.jpg') }}" alt="" />
+            <img src="{{ URL::asset('img/banner4.png') }}" alt="" />
           </li>
         </ul>
       </div>
@@ -67,7 +67,9 @@
       <h1 class="heading1"><span class="maintext">Featured Products</span><span class="subtext"> See Our Most featured Products</span></h1>
 
       <ul class="thumbnails">
+      <?php $i = 0 ?>
       @foreach ($products as $product)
+        <?php $i ++; ?>
         <li class="span3">
 
           <a class="prdocutname" href="{{ URL::route('products::', $product->id) }}">{{ $product->product_name }}</a>
@@ -94,6 +96,8 @@
             </div>
           </div>
         </li>
+
+        <?php if ($i == 4) { echo '<li class="clearfix" style="margin:0px"></li>'; $i = 0; } ?>
       @endforeach
       </ul>
 

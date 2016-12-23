@@ -60,7 +60,7 @@
 
 
           <!--  Must have -->  
-          <div class="sidewidt">
+     {{--      <div class="sidewidt">
           <h2 class="heading2"><span>Must have</span></h2>
           <div class="flexslider" id="mainslider">
             <ul class="slides">
@@ -72,7 +72,9 @@
               </li>
             </ul>
           </div>
-          </div>
+          </div> --}}
+
+          
         </aside>
         <!-- Sidebar End-->
 
@@ -91,10 +93,11 @@
                 <section id="categorygrid">
                 
                   <ul class="thumbnails grid">
-
+                  <?php $i = 0 ?>
                   @foreach ($products as $product)
+                    <?php $i ++; ?>
                     <li class="span3">
-
+          
                       <a class="prdocutname" href="{{ URL::route('products::', $product->id) }}">{{ $product->product_name }}</a>
 
                       <div class="thumbnail">
@@ -118,11 +121,12 @@
 
                       </div>
                     </li>
+                    <?php if ($i == 3) { echo '<li class="clearfix" style="margin:0px"></li>'; $i = 0; } ?>
                   @endforeach
 
 
 
-                    <li class="span3">
+{{--                     <li class="span3">
                       <a class="prdocutname" href="product.html">Product Name Here</a>
                       <div class="thumbnail">
                         <span class="offer tooltip-test" >Offer</span>
@@ -148,7 +152,7 @@
                           </div>
                         </div>
                       </div>
-                    </li>
+                    </li> --}}
 
 
 

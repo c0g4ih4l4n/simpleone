@@ -51,7 +51,7 @@ class HomeController extends Controller
         }
 
 
-        $this->bestsellers = Product::orderBy('sold', 'desc')->limit(5)->get();
+        $this->bestsellers = Product::orderBy('sold', 'desc')->limit(4)->get();
 
         // take best seller photo
         foreach ($this->bestsellers as $product) 
@@ -61,7 +61,7 @@ class HomeController extends Controller
             else $product->photo = $product->photos->last()->name;
         }
 
-        $this->lastestProducts = Product::orderBy('created_at', 'desc')->limit(5)->get();
+        $this->lastestProducts = Product::orderBy('created_at', 'desc')->limit(4)->get();
         // take lastest product photo
         foreach ($this->lastestProducts as $product) 
         {

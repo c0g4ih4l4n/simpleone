@@ -264,4 +264,46 @@ class CartController extends Controller
     {
         //
     }
+
+
+    // wish list
+    public function wishlist() 
+    {
+        $wishlist = Cart::instance('wish-list')->content();
+        foreach ($wishlist as $row) 
+        {
+            $product = Product::find($row->id);
+
+            $row->product_name = $product->product_name; 
+
+            $row->photo = $this->getPhotoName($product);
+        }
+
+        $data = array (
+            'user' => $this->user,
+            'categories' => $this->categories,
+            'carts' => $wishlist
+            );
+        return view('newTemplate.wish-list')->with($data);
+    }
+
+    public function addWishList($product_id)
+    {
+        Cart::instance('wish-list');
+
+        $product = Product::findOrFail($product_id);
+
+        Cart::add($product_id, $product->product_name, 1, $product->item->price)->associate('App\Models\Product');
+
+        return Redirect::route('wishlist');
+    }
+
+    public function removeWishList($rowId) 
+    {
+        Cart::instance('wish-list');
+
+        Cart::remove($rowId);
+
+        return Redirect::route('wishlist');
+    }
 }

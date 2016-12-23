@@ -144,7 +144,7 @@
               <ul>
                 <li><a href="#">My Account</a>
                 </li>
-                <li><a href="#">Wishlist</a>
+                <li><a href="{{ URL::route('wishlist') }}">Wishlist</a>
                 </li>
               </ul>
             </div>

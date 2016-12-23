@@ -14,3 +14,23 @@
 .form-search {
 	margin: 0px 60px;
 }
+#wish-list {
+	display: inline-block;
+	background: url(../img/productpageicon.png) no-repeat 0 0;
+	margin-right: 10px;
+	height: 66px;
+}
+#wish {
+	background: #24EBF8 url(../img/productpageicon.png) no-repeat 0 0;
+	background-position: 10px -52px;
+	color: #fff;
+	padding: 15px 15px 15px 60px;
+	font-size: 18px;
+}
+#wish-list a:hover {
+	background: #0ABABC url(../img/productpageicon.png) no-repeat 0 0;
+	background-position: 10px -52px;
+}
+.media-object {
+	/*height: 250px;*/
+}

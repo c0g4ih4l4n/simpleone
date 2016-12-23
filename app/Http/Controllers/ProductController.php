@@ -108,6 +108,9 @@ class ProductController extends Controller
     {
         $product = $this->productRepository->getById($id);
 
+        $relatedProducts = Product::where('category_id', '=', $product->category_id)
+                ->where('id', '!=', $product->id)->limit(4)->get();
+
         $comments = $product->comments;
 
         foreach ($comments as $comment) 
@@ -126,6 +129,7 @@ class ProductController extends Controller
         $data = array (
             'user' => $this->user,
             'product' => $product,
+            'relatedProducts' => $relatedProducts,
             'categories' => $this->categories,
             'reviews' => $reviews,
             'comments' => $comments,

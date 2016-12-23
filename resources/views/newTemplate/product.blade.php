@@ -21,20 +21,20 @@
             </li>
 
             <li class="span5">
-              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product2big.jpg">
-                <img  src="{{ URL::asset('web_assets/img/product2big.jpg') }}" alt="" title="">
+              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="{{ URL::route('get_photo', $product->photo) }}">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
             <li class="span5">
-              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product1big.jpg">
-                <img src="{{ URL::asset('web_assets/img/product1big.jpg') }}" alt="" title="">
+              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="{{ URL::route('get_photo', $product->photo) }}">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
             <li class="span5">
-              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product2big.jpg">
-                <img  src="{{ URL::asset('web_assets/img/product2big.jpg') }}" alt="" title="">
+              <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="{{ URL::route('get_photo', $product->photo) }}">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
@@ -44,25 +44,25 @@
 
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="{{ URL::asset('web_assets/img/product1.jpg') }}" alt="" title="">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="{{ URL::asset('web_assets/img/product2.jpg') }}" alt="" title="">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="{{ URL::asset('web_assets/img/product1.jpg') }}" alt="" title="">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
             <li class="producthtumb">
               <a class="thumbnail" >
-                <img  src="{{ URL::asset('web_assets/img/product2.jpg') }}" alt="" title="">
+                <img src="{{ URL::route('get_photo', $product->photo) }}" alt="" title="">
               </a>
             </li>
 
@@ -81,10 +81,17 @@
                   <span class="spiral"></span>${{ $product->price }}</div>
               </div>
 
+
+              {{-- Add to cart and wish list --}}
               <ul class="productpagecart">
+
                 <li><a class="cart" href="{{ URL::route('cart_add', $product->id) }}">Add to Cart</a>
                 </li>
+
+                <li id="wish-list"><a class="cart" id="wish" href="{{ URL::route('wishlist_add', $product->id) }}">Add to Wish List</a>
+                </li>
               </ul>
+
 
               <!-- Product Description tab & comments-->
               <div class="productdesc">
@@ -227,20 +234,8 @@
 
       <ul class="thumbnails">
 
-        <li class="span3">
-          <a class="prdocutname" href="product.html">Product Name Here</a>
-          <div class="thumbnail">
-            <span class="sale tooltip-test">Sale</span>
-            <a href="#"><img alt="" src="img/product1.jpg"></a>
-            <div class="pricetag">
-              <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
-              <div class="price">
-                <div class="pricenew">$4459.00</div>
-                <div class="priceold">$5000.00</div>
-              </div>
-            </div>
-          </div>
-        </li>
+      @include ('front.staff.relatedProduct')
+
 
       </ul>
     </div>
