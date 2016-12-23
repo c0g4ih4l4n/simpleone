@@ -107,7 +107,7 @@
       <h1 class="heading1"><span class="maintext">Latest Products</span><span class="subtext"> See Our  Latest Products</span></h1>
 
       <ul class="thumbnails">
-      @foreach ($products as $product)
+      @foreach ($lastestProducts as $product)
         <li class="span3">
           <a class="prdocutname" href="{{ URL::route('products::', $product->id) }}">{{ $product->product_name }}</a>
 

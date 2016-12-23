@@ -35,12 +35,15 @@ class ProductController extends Controller
 
     protected $categoryRepository;
 
+    private $categories;
+
     public function __construct() {
         if (Auth::check()) {
             $this->user = Auth::user();
         }
         $this->productRepository = new ProductRepository(new Product);
         $this->categoryRepository = new CategoryRepository(new Category);
+        $this->categories = $this->categoryRepository->listAll();
     }
     /**
      * Display a listing of the resource.
@@ -50,10 +53,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productRepository->listAll();
+        $categories = $this->categoryRepository->listAll();
         
         $data = array (
             'user' => $this->user,
             'products' => $products,
+            'categories' => $categories
             );
         // return view('interface.view_product')->with($data);
         return view('admin.product_list')->with($data);
@@ -121,6 +126,7 @@ class ProductController extends Controller
         $data = array (
             'user' => $this->user,
             'product' => $product,
+            'categories' => $this->categories,
             'reviews' => $reviews,
             'comments' => $comments,
             );

@@ -13,10 +13,12 @@ use App\Models\Product;
 use App\Models\Shoppingcart;
 use App\Models\Checkout;
 use App\Models\Deliver;
+use App\Models\Category;
 
 use App\Repositories\Eloquent\CheckoutRepository;
 use App\Repositories\Eloquent\DeliverRepository;
 use App\Repositories\Eloquent\ProductRepository;
+use App\Repositories\Eloquent\CategoryRepository;
 
 use Cart;
 use App\Http\Traits\TakePhoto;
@@ -30,6 +32,10 @@ class CartController extends Controller
     private $carts;
 
     private $productRepository;
+
+    private $categoryRepository;
+
+    private $categories;
     // indentifier of cart
     // each user have own identifier
     private $identifier;
@@ -37,6 +43,9 @@ class CartController extends Controller
     public function __construct() 
     {
         $this->middleware('auth');
+
+        $this->categoryRepository = new CategoryRepository(new Category);
+        $this->categories = $this->categoryRepository->listAll();
 
         $this->user = Auth::user();
         $this->identifier = 1;
@@ -77,7 +86,8 @@ class CartController extends Controller
     {
         $data = array(
             'carts' => $this->carts,
-            'user' => $this->user
+            'user' => $this->user,
+            'categories' => $this->categories
             );
 
         return view('newTemplate.shopping-cart')->with($data);
@@ -91,7 +101,8 @@ class CartController extends Controller
     {
         $data = array(
             'carts' => $this->carts,
-            'user' => $this->user
+            'user' => $this->user,
+            'categories' => $this->categories
             );
 
         return view('newTemplate.checkout')->with($data);

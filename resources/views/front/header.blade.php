@@ -84,25 +84,27 @@
     <div id="categorymenu">
       <nav class="subnav">
         <ul class="nav-pills categorymenu">
+
+
           <li><a class="active"  href="{{ URL::route('home') }}">Home</a>
           </li>
+
+
           <li><a href="#">Products</a>
             <div>
               <ul>
-                <li><a href="#"> Women's Accessories</a>
+              @foreach ($categories as $category)
+                <li><a href="{{ URL::route('listCategory', $category->id) }}">{{ $category->category_name }}</a>
                 </li>
+              @endforeach
                 <li><a href="#">Men's Accessories <span class="label label-success">Sale</span>
                   </a>
-                </li>
-                <li><a href="#">Dresses </a>
                 </li>
                 <li><a href="#">Shoes <span class="label label-warning">(25)</span>
                   </a>
                 </li>
                 <li><a href="#">Bags <span class="label label-info">(new)</span>
                   </a>
-                </li>
-                <li><a href="#">Sunglasses </a>
                 </li>
               </ul>
               <ul>
@@ -111,14 +113,20 @@
               </ul>
             </div>
           </li>
+
+
           <li><a  href="{{ URL::route('listCategory') }}">Categories</a>
           </li>
+
           <li><a href="{{ URL::route('shoppingcart') }}">Shopping Cart</a>
           </li>
+
           <li><a href="{{ URL::route('checkout') }}">Checkout</a>
           </li>
+
           <li><a href="compare.html">Compare</a>
-          </li>          
+          </li>
+
           <li><a href="blog.html">Blog</a>
             <div>
               <ul>
@@ -129,6 +137,7 @@
               </ul>
             </div>
           </li>
+
           <li><a href="myaccount.html">My Account</a>
             <div>
               <ul>
@@ -143,6 +152,8 @@
               </ul>
             </div>
           </li>
+
+
           <li><a href="features.html">Features</a>
           </li>
           <li><a href="{{ URL::route('contact') }}">Contact</a>

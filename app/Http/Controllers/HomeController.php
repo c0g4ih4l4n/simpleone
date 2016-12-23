@@ -28,7 +28,8 @@ class HomeController extends Controller
     private $user;
     private $categories;
     private $products;
-    
+    private $bestsellers;
+    private $lastestProducts;
     public function __construct()
     {        
         if (Auth::check()) {
@@ -48,6 +49,26 @@ class HomeController extends Controller
                 $product->photo = null;
             else $product->photo = $product->photos->last()->name;
         }
+
+
+        $this->bestsellers = Product::orderBy('sold', 'desc')->limit(5)->get();
+
+        // take best seller photo
+        foreach ($this->bestsellers as $product) 
+        {
+            if ($product->photos->last() == null) 
+                $product->photo = null;
+            else $product->photo = $product->photos->last()->name;
+        }
+
+        $this->lastestProducts = Product::orderBy('created_at', 'desc')->limit(5)->get();
+        // take lastest product photo
+        foreach ($this->lastestProducts as $product) 
+        {
+            if ($product->photos->last() == null) 
+                $product->photo = null;
+            else $product->photo = $product->photos->last()->name;
+        }
     }
 
     /**
@@ -60,12 +81,13 @@ class HomeController extends Controller
         $sort_categories = $this->categories->toArray();
         usort($sort_categories, array ($this, 'compareInteger'));
 
-
         $data = array (
             'user' => $this->user,
             'categories' => $this->categories,
             'sort_categories' => $sort_categories,
-            'products' => $this->products
+            'products' => $this->products,
+            'bestsellers' => $this->bestsellers,
+            'lastestProducts' => $this->lastestProducts
             );
         
         return view('newTemplate.index')->with($data);
@@ -75,6 +97,7 @@ class HomeController extends Controller
     {
         $sort_categories = $this->categories->toArray();
 
+        // take product if have id
         if (func_num_args() != 0)
         {
             $id = func_get_arg(0);
@@ -95,6 +118,8 @@ class HomeController extends Controller
             'user' => $this->user,
             'categories' => $this->categories,
             'sort_categories' => $sort_categories,
+            'bestsellers' => $this->bestsellers,
+            'lastestProducts' => $this->lastestProducts
             );
 
         if (isset($products)) {
