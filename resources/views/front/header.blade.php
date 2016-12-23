@@ -124,35 +124,32 @@
           <li><a href="{{ URL::route('checkout') }}">Checkout</a>
           </li>
 
-          <li><a href="compare.html">Compare</a>
+          <li><a href="#">Compare</a>
           </li>
 
-          <li><a href="blog.html">Blog</a>
+          <li><a href="#">Blog</a>
             <div>
               <ul>
-                <li><a href="blog.html">Blog page</a>
+                <li><a href="#">Blog page</a>
                 </li>
-                <li><a href="bloglist.html">Blog List VIew</a>
+                <li><a href="#">Blog List VIew</a>
                 </li>
               </ul>
             </div>
           </li>
 
-          <li><a href="myaccount.html">My Account</a>
+          @if (isset($user))
+          <li><a href="#">My Account</a>
             <div>
               <ul>
-                <li><a href="myaccount.html">My Account</a>
+                <li><a href="#">My Account</a>
                 </li>
-                <li><a href="login.html">Login</a>
-                </li>
-                <li><a href="register.html">Register</a>
-                </li>
-                <li><a href="wishlist.html">Wishlist</a>
+                <li><a href="#">Wishlist</a>
                 </li>
               </ul>
             </div>
           </li>
-
+          @endif
 
           <li><a href="features.html">Features</a>
           </li>

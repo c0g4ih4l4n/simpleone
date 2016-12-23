@@ -180,6 +180,6 @@ class HomeController extends Controller
             'categories' => $this->categories,
             'products' => $this->products
             );
-        return view('newTemplate.contact');
+        return view('newTemplate.contact')->with($data);
     }
 }
