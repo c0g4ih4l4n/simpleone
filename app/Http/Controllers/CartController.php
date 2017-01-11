@@ -120,7 +120,7 @@ class CartController extends Controller
         // return
         if ($this->user->user_balance < Cart::total())
         {
-            return;
+            return "Doesn't have enough money !!";
         }
 
         // save delivery informantion to database
