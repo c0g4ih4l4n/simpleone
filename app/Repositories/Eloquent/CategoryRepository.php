@@ -130,6 +130,15 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
 	public function delete($id)
 	{
+
+		// delete child category
+		$categories = Category::where('parent_id', '=', $id)->delete();
+
+		// foreach ($categories as $category) {
+		// 	$category->delete();
+		// }
+
+		// delete category
 		$category = Category::destroy($id);
 
         return "Success";

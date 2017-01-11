@@ -17,6 +17,10 @@ class CategoryPresenter extends BasePresenter
     {
         $parent = Category::find($this->wrappedObject->parent_id);
 
+        // if not found 
+        if ($parent == null) {
+            return 0;
+        }
         return $parent->category_name;
     }
 
