@@ -12,7 +12,8 @@
 	border-radius: 4px;
 }
 .form-search {
-	margin: 0px 60px;
+	margin-left: 20%;
+	/*margin: 0px 60px;*/
 }
 #wish-list {
 	display: inline-block;
