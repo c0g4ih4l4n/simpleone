@@ -82,7 +82,7 @@ class CartController extends Controller
      * List Item int the Cart
      * @return [type] [description]
      */
-    public function list() 
+    public function listCart() 
     {
         $data = array(
             'carts' => $this->carts,

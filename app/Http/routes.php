@@ -24,7 +24,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 	// Cart
-	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@list']);
+	Route::get('/shoppingcart', ['as' => 'shoppingcart', 'uses' => 'CartController@listCart']);
 
 	// add item
 	Route::get('/add-cart/{product_id}', ['as' => 'cart_add', 'uses' => 'CartController@add']);
